@@ -12,12 +12,13 @@ function Footer() {
   return (
     <div className={styles.component}>
       <div className={styles.row}>
-        <img src={sce} alt="smart contract engineer" className={styles.sce} />
-        <a href="https://www.smartcontract.engineer" target="__blank">
-          Smart Contract Engineer
+        {/* <img src={sce} alt="smart contract engineer" className={styles.sce} /> */}
+        <span>👽&nbsp;</span>
+        <a href="http://saucepoint.wtf" target="__blank">
+          saucepoint
         </a>
       </div>
-      <div className={styles.social}>
+      {/* <div className={styles.social}>
         <div className={styles.row}>
           <img src={discord} alt="discord" className={styles.discord} />
           <a href="https://discord.gg/bt8FK2wkcW" target="__blank">
@@ -39,7 +40,7 @@ function Footer() {
             YouTube
           </a>
         </div>
-      </div>
+      </div> */}
       <div className={styles.row}>
         Donate
         <span>🙂</span>
@@ -51,21 +52,21 @@ function Footer() {
           Khan Academy
         </a>
       </div>
-      <div className={styles.row}>
+      {/* <div className={styles.row}>
         <a href="mailto:contact@solidity-by-example.org">
           contact@solidity-by-example.org
         </a>
-      </div>
+      </div> */}
       <div className={styles.row}>
         <a
-          href="https://github.com/solidity-by-example/solidity-by-example.github.io"
+          href="https://github.com/saucepoint/v4-by-example"
           target="__blank"
         >
           source
         </a>
         <div className={styles.bar}>|</div>
         <a
-          href="https://github.com/solidity-by-example/solidity-by-example.github.io/blob/gh-pages/LICENSE"
+          href="https://github.com/saucepoint/v4-by-example/blob/gh-pages/LICENSE"
           target="__blank"
         >
           license

@@ -9,10 +9,7 @@ import youTube from "../components/youtube.png"
 import { ROUTES, ROUTES_BY_CATEGORY, TRANSLATIONS } from "../nav"
 
 const UPDATES = [
-  "2023/09/06 - Assembly binary exponentiation",
-  "2023/08/20 - Solidity 0.8.20",
-  "2023/07/29 - GitHub PR harkeshbirman",
-  "2023/07/12 - Spanish translation",
+  "2023/10/18 - Initial V4 Snippets",
 ]
 
 export default function HomePage() {
@@ -114,25 +111,18 @@ export default function HomePage() {
   return (
     <div className={styles.component}>
       <SEO
-        title="Solidity by Example | 0.8.20"
-        description="Learn smart contract programming using Solidity"
+        title="Uniswap v4 by Example | 0.8.20"
+        description="Learn Uniswap v4 using Solidity"
       />
       <h1 className={styles.header}>
-        <a href="/">Solidity by Example</a>
+        <a href="/">Uniswap v4 by Example</a>
       </h1>
       <div className={styles.subHeader}>v 0.8.20</div>
       <div className={styles.main}>
         <p>
-          an introduction to <a href="https://solidity.readthedocs.io">Solidity</a> with
+          an introduction to integrating and using <a href="https://github.com/uniswap/v4-core">Uniswap v4</a> with
           simple examples
         </p>
-
-        <div className={styles.youTube}>
-          <img src={youTube} alt="logo" className={styles.youTubeLogo} />
-          <a href="https://www.youtube.com/@smartcontractprogrammer" target="__blank">
-            Most code are explained here
-          </a>
-        </div>
 
         <div className={styles.updates}>
           {UPDATES.map((text, i) => (
