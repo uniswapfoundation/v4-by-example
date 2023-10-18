@@ -25,6 +25,10 @@ export const TRANSLATIONS: Translation[] = [
 
 export const SOL_ROUTES: Route[] = [
   {
+    path: "initialize",
+    title: "Pool Initialize"
+  },
+  {
     path: "hello-world",
     title: "Hello World",
   },
