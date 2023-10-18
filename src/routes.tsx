@@ -34,6 +34,7 @@ import component_call from "./pages/call"
 import component_calling_contract from "./pages/calling-contract"
 import component_constants from "./pages/constants"
 import component_constructor from "./pages/constructor"
+import component_create_liquidity from "./pages/create-liquidity"
 import component_data_locations from "./pages/data-locations"
 import component_defi_chainlink_price_oracle from "./pages/defi/chainlink-price-oracle"
 import component_defi_constant_product_amm from "./pages/defi/constant-product-amm"
@@ -265,6 +266,10 @@ const routes: Route[] = [
     {
         path: "/constructor",
         component: component_constructor
+    },
+    {
+        path: "/create-liquidity",
+        component: component_create_liquidity
     },
     {
         path: "/data-locations",
