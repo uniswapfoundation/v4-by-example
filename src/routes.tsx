@@ -98,6 +98,7 @@ import component_signature from "./pages/signature"
 import component_state_variables from "./pages/state-variables"
 import component_structs from "./pages/structs"
 import component_super from "./pages/super"
+import component_swap from "./pages/swap"
 import component_tests_echidna from "./pages/tests/echidna"
 import component_try_catch from "./pages/try-catch"
 import component_unchecked_math from "./pages/unchecked-math"
@@ -522,6 +523,10 @@ const routes: Route[] = [
     {
         path: "/super",
         component: component_super
+    },
+    {
+        path: "/swap",
+        component: component_swap
     },
     {
         path: "/tests/echidna",
