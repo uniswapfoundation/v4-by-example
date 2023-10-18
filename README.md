@@ -1,6 +1,4 @@
-# solidity-by-example.github.io
-
-[Uniswap v4 by Example](https://solidity-by-example.org)
+# v4-by-example
 
 ### License
 
@@ -23,23 +21,23 @@ npm run preview
 npm run deploy
 ```
 
-### Memo
-
-TODO: code split / dynamic imports
-TODO: side nav
-
 ```shell
+# --------------- #
+# Utility Scripts #
+# --------------- #
+
 ## Deploy ##
+# For an markdown file, generate it's react page
 # md to react
 npx ts-node --project ./scripts/tsconfig.json scripts/md-to-react.ts src/pages/array
 
 # md to react all pages
 find src/pages -type d -not -path "*/__snapshots__" -exec npx ts-node --project ./scripts/tsconfig.json scripts/md-to-react.ts {} \;
 
-# build routes
+# Rebuild routes
 npx ts-node --project ./scripts/tsconfig.json scripts/build-routes.ts
 
-# build search index
+# Rebuild search index
 npx ts-node --project ./scripts/tsconfig.json scripts/build-search-index.ts
 
 ## Compile Solidity ##
