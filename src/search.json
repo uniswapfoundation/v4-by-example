@@ -142,6 +142,20 @@
   "echidna": [
     "/tests/echidna"
   ],
+  "swap": [
+    "/swap",
+    "/defi/uniswap-v3-swap",
+    "/defi/uniswap-v3-flash-swap",
+    "/defi/uniswap-v2-flash-swap",
+    "/defi/uniswap-v2",
+    "/defi/stable-swap-amm"
+  ],
+  "trade": [
+    "/swap"
+  ],
+  "swapping": [
+    "/swap"
+  ],
   "calling": [
     "/super",
     "/calling-contract"
@@ -723,13 +737,6 @@
     "/defi/uniswap-v3-liquidity",
     "/defi/uniswap-v3-flash-swap",
     "/defi/uniswap-v3-flash"
-  ],
-  "swap": [
-    "/defi/uniswap-v3-swap",
-    "/defi/uniswap-v3-flash-swap",
-    "/defi/uniswap-v2-flash-swap",
-    "/defi/uniswap-v2",
-    "/defi/stable-swap-amm"
   ],
   "amm": [
     "/defi/uniswap-v3-swap",

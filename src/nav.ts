@@ -33,6 +33,10 @@ export const SOL_ROUTES: Route[] = [
     title: "Create Liquidity"
   },
   {
+    path: "swap",
+    title: "Swap"
+  },
+  {
     path: "hello-world",
     title: "Hello World",
   },

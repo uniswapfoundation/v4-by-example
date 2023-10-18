@@ -39,6 +39,11 @@
     "test",
     "echidna"
   ],
+  "/swap": [
+    "swap",
+    "trade",
+    "swapping"
+  ],
   "/super": [
     "calling",
     "parent",
