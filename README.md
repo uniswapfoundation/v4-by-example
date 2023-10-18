@@ -1,6 +1,6 @@
 # solidity-by-example.github.io
 
-[Solidity By Example](https://solidity-by-example.org)
+[Uniswap v4 by Example](https://solidity-by-example.org)
 
 ### License
 

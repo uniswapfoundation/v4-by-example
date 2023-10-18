@@ -20,18 +20,19 @@ export const codes = [
     },
 ]
 
-const html = `<blockquote>
-<p>Expect Uniswap Labs to release an official contract around launch</p>
-</blockquote>
+const html = `<ul>
+<li>Swap between tokens on a single pool</li>
+</ul>
 <p>Using the <code>v4-core</code> provided <em>test</em> router, we can swap on a single pool. These snippets should only be used for non-production, testing purposes</p>
-<p>Swapping, in production, will typically use a periphery contract. It is <strong>not</strong> recommended to directly swap with <code>poolManager.swap</code></p>
-<p>Swapping will require 3 arguments:</p>
+<p>Swapping will typically make use of a periphery contract. It is <strong>not</strong> recommended to directly swap with <code>poolManager.swap</code></p>
+<p>Swapping involves 3 primary arguments:</p>
 <ul>
-<li>Which pool/hook to swap on</li>
-<li>The direction of the swap, token0 -&gt; token1 or token1 -&gt; token0</li>
+<li>Which pool to swap on</li>
+<li>The direction of the swap, <code>token0 -&gt; token1</code> or <code>token1 -&gt; token0</code></li>
 <li>The input token amount</li>
 </ul>
 <p>(Note: A quoter contract is unavailable at this time)</p>
+<h4>Expect Uniswap Labs to release an official contract around launch</h4>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 

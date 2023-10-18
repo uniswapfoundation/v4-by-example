@@ -26,7 +26,7 @@ function Header() {
         </a>
         <h3 className={styles.header}>
           <a href="/" className={styles.a}>
-            Solidity by Example
+            Uniswap v4 by Example
           </a>
         </h3>
       </div>

@@ -53,7 +53,7 @@ contract PoolInitializeExampleInputs {
         // floor(sqrt(1) * 2^96)
         uint160 startingPrice = 79228162514264337593543950336;
 
-        // Custom hook requires a timestamp when initializing it
+        // Assume the custom hook requires a timestamp when initializing it
         bytes memory hookData = abi.encode(block.timestamp);
 
         PoolKey memory pool = PoolKey({
