@@ -6,6 +6,8 @@ export const description = "Providing Liquidity to a Uniswap V4 Pool"
 export const keywords = [
     "liquidity",
     "LP",
+    "lp",
+    "provide",
     "provision",
     "supply",
 ]
@@ -21,14 +23,20 @@ export const codes = [
     },
 ]
 
-const html = `<blockquote>
-<p>Expect Uniswap Labs to release an official contract around launch</p>
-</blockquote>
-<blockquote>
-<p>⚠️ Using the test router in production will lead to a loss of funds ⚠️ </p>
-</blockquote>
-<p>Using the <code>v4-core</code> provided <em>test</em> router, we can provide liquidity to a pool. This should only be used for non-production testing purposes</p>
+const html = `<ul>
+<li>Provide Liquidity to a Uniswap v4 Pool</li>
+</ul>
+<p>⚠️ Using the test router in production <strong>will lead to a loss of funds</strong> ⚠️ </p>
+<p>Using the <code>v4-core</code> provided <em>test</em> router, we can provide liquidity to a pool. These snippets should only be used for non-production, testing purposes</p>
 <p>Creating liquidity involves using periphery contracts. It is <strong>not</strong> recommended to directly provide liquidity with <code>poolManager.modifyPosition</code></p>
+<p>Providing liquidity involves 3 primary arguments:</p>
+<ul>
+<li>Which pool to swap on</li>
+<li>The range of the the liquidity, i.e. the upper and lower bounds</li>
+<li>A <code>liquidity</code> value that determines input token amounts</li>
+</ul>
+<p>Please see <a href="https://github.com/Uniswap/v4-periphery/blob/main/contracts/libraries/LiquidityAmounts.sol">LiquidityAmounts</a> for calculating the <code>liquidity</code> value</p>
+<h4>Expect Uniswap Labs to release an official contract around launch</h4>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 

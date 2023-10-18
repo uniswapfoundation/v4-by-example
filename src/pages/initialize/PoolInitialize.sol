@@ -21,7 +21,7 @@ contract PoolInitialize {
         uint160 sqrtPriceX96,
         bytes calldata hookData
     ) external {
-        // sort your tokens! v4 expects: token0 < token1
+        // sort your tokens! v4 requires token0 < token1
         if (token0 > token1) {
             (token0, token1) = (token1, token0);
         }

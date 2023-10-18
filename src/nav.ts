@@ -15,7 +15,7 @@ export const TRANSLATIONS: Translation[] = [
 export const SOL_ROUTES: Route[] = [
   {
     path: "initialize",
-    title: "Pool Initialize"
+    title: "Initialize Pool"
   },
   {
     path: "create-liquidity",

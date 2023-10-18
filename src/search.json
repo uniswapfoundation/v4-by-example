@@ -32,6 +32,12 @@
   "LP": [
     "/create-liquidity"
   ],
+  "lp": [
+    "/create-liquidity"
+  ],
+  "provide": [
+    "/create-liquidity"
+  ],
   "provision": [
     "/create-liquidity"
   ],
