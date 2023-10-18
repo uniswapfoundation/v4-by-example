@@ -746,7 +746,8 @@
   ],
   "liquidity": [
     "/defi/uniswap-v3-liquidity",
-    "/defi/uniswap-v2-add-remove-liquidity"
+    "/defi/uniswap-v2-add-remove-liquidity",
+    "/create-liquidity"
   ],
   "arbitrage": [
     "/defi/uniswap-v3-flash-swap"
@@ -774,7 +775,8 @@
     "/defi/uniswap-v2-optimal-one-sided-supply"
   ],
   "supply": [
-    "/defi/uniswap-v2-optimal-one-sided-supply"
+    "/defi/uniswap-v2-optimal-one-sided-supply",
+    "/create-liquidity"
   ],
   "add": [
     "/defi/uniswap-v2-add-remove-liquidity",
@@ -833,6 +835,12 @@
   ],
   "calldata": [
     "/data-locations"
+  ],
+  "LP": [
+    "/create-liquidity"
+  ],
+  "provision": [
+    "/create-liquidity"
   ],
   "constructor": [
     "/constructor"

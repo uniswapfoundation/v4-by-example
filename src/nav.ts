@@ -29,6 +29,10 @@ export const SOL_ROUTES: Route[] = [
     title: "Pool Initialize"
   },
   {
+    path: "create-liquidity",
+    title: "Create Liquidity"
+  },
+  {
     path: "hello-world",
     title: "Hello World",
   },

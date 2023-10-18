@@ -501,6 +501,12 @@
     "memory",
     "calldata"
   ],
+  "/create-liquidity": [
+    "liquidity",
+    "LP",
+    "provision",
+    "supply"
+  ],
   "/constructor": [
     "constructor",
     "constructors",
