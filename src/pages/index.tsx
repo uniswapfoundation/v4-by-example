@@ -97,7 +97,7 @@ export default function HomePage() {
           </div>
         ))}
 
-        <div>
+        {/* <div>
           <h3 className={styles.category}>Translations</h3>
           {TRANSLATIONS.map(({ lang, url }) => (
             <li className={styles.listItem} key={url}>
@@ -106,7 +106,7 @@ export default function HomePage() {
               </a>
             </li>
           ))}
-        </div>
+        </div> */}
       </>
     )
   }
