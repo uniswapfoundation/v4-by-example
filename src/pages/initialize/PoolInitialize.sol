@@ -27,8 +27,8 @@ contract PoolInitialize {
         }
 
         PoolKey memory pool = PoolKey({
-            currency0: Currency(token0),
-            currency1: Currency(token1),
+            currency0: Currency.wrap(token0),
+            currency1: Currency.wrap(token1),
             fee: swapFee,
             tickSpacing: tickSpacing,
             hooks: IHooks(hook)

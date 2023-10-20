@@ -29,8 +29,8 @@ contract PoolInitializeExampleInputs {
         bytes memory hookData = new bytes(0);
 
         PoolKey memory pool = PoolKey({
-            currency0: Currency(token0),
-            currency1: Currency(token1),
+            currency0: Currency.wrap(token0),
+            currency1: Currency.wrap(token1),
             fee: swapFee,
             tickSpacing: tickSpacing,
             hooks: IHooks(address(0x0))
@@ -57,8 +57,8 @@ contract PoolInitializeExampleInputs {
         bytes memory hookData = abi.encode(block.timestamp);
 
         PoolKey memory pool = PoolKey({
-            currency0: Currency(token0),
-            currency1: Currency(token1),
+            currency0: Currency.wrap(token0),
+            currency1: Currency.wrap(token1),
             fee: swapFee,
             tickSpacing: tickSpacing,
             hooks: IHooks(hook)

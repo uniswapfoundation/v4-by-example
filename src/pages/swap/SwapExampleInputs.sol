@@ -20,8 +20,8 @@ contract SwapExampleInputs {
 
         // Using a hookless pool
         PoolKey memory pool = PoolKey({
-            currency0: Currency(token0),
-            currency1: Currency(token1),
+            currency0: Currency.wrap(token0),
+            currency1: Currency.wrap(token1),
             fee: 3000,
             tickSpacing: 60,
             hooks: IHooks(address(0x0))
