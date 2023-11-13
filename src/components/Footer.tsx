@@ -5,17 +5,13 @@ import youTube from "./youtube.png"
 import telegram from "./telegram.png"
 import discord from "./discord.png"
 
-// Khan Academy
-const ADDRESS = "0x95a647B3d8a3F11176BAdB799b9499C671fa243a"
-
 function Footer() {
   return (
     <div className={styles.component}>
       <div className={styles.row}>
-        {/* <img src={sce} alt="smart contract engineer" className={styles.sce} /> */}
-        <span>👽&nbsp;</span>
-        <a href="http://saucepoint.wtf" target="__blank">
-          saucepoint
+        <span>🦄&nbsp;</span>
+        <a href="https://uniswapfoundation.org" target="__blank">
+          Uniswap Foundation
         </a>
       </div>
       {/* <div className={styles.social}>
@@ -42,31 +38,15 @@ function Footer() {
         </div>
       </div> */}
       <div className={styles.row}>
-        Donate
-        <span>🙂</span>
-        <a href={`https://etherscan.io/address/${ADDRESS}`} target="__blank">
-          {ADDRESS.slice(0, 6)}...{ADDRESS.slice(-6, -1)}
-        </a>
-        <span className={styles.to}>to</span>
-        <a href="https://khanacademy.org" target="__blank" className={styles.khan}>
-          Khan Academy
-        </a>
-      </div>
-      {/* <div className={styles.row}>
-        <a href="mailto:contact@solidity-by-example.org">
-          contact@solidity-by-example.org
-        </a>
-      </div> */}
-      <div className={styles.row}>
         <a
-          href="https://github.com/saucepoint/v4-by-example"
+          href="https://github.com/uniswapfoundation/v4-by-example"
           target="__blank"
         >
           source
         </a>
         <div className={styles.bar}>|</div>
         <a
-          href="https://github.com/saucepoint/v4-by-example/blob/gh-pages/LICENSE"
+          href="https://github.com/uniswapfoundation/v4-by-example/blob/gh-pages/LICENSE"
           target="__blank"
         >
           license

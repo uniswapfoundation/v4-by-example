@@ -111,16 +111,16 @@ export default function HomePage() {
   return (
     <div className={styles.component}>
       <SEO
-        title="Uniswap v4 by Example | 0.8.20"
+        title="Uniswap v4 by Example | 0.8.22"
         description="Learn Uniswap v4 using Solidity"
       />
       <h1 className={styles.header}>
         <a href="/">Uniswap v4 by Example</a>
       </h1>
-      <div className={styles.subHeader}>v 0.8.20</div>
+      <div className={styles.subHeader}>v0.8.22</div>
       <div className={styles.main}>
         <p>
-          an introduction to integrating and using <a href="https://github.com/uniswap/v4-core">Uniswap v4</a> with
+          An introduction to integrating and using <a href="https://github.com/uniswap/v4-core">Uniswap v4</a> through
           simple examples
         </p>
 
