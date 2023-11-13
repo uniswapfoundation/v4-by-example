@@ -38,7 +38,7 @@ hljs.registerLanguage("solidity", solidity)
 
 async function findSolidityFiles(dir: string): Promise<string[]> {
   const files = await readdir(dir)
-  return files.filter((file) => file.split(".").pop() == "sol")
+  return files.filter((file) => file.split(".").pop() == "sol" || file.split(".").pop() == "solsnippet")
 }
 
 async function mdToHtml(filePath: string) {
