@@ -1,0 +1,22 @@
+IPoolManager manager = IPoolManager(0x01);
+
+address hook = address(0x80); // prefix indicates the hook only has a beforeInitialize() function
+address token0 = address(0x11);
+address token1 = address(0x22);
+uint24 swapFee = 3000; // 0.30% fee tier
+int24 tickSpacing = 60;
+
+// floor(sqrt(1) * 2^96)
+uint160 startingPrice = 79228162514264337593543950336;
+
+// Assume the custom hook requires a timestamp when initializing it
+bytes memory hookData = abi.encode(block.timestamp);
+
+PoolKey memory pool = PoolKey({
+    currency0: Currency.wrap(token0),
+    currency1: Currency.wrap(token1),
+    fee: swapFee,
+    tickSpacing: tickSpacing,
+    hooks: IHooks(hook)
+});
+manager.initialize(pool, startingPrice, hookData);

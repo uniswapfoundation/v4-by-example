@@ -17,7 +17,7 @@ const SideNav: React.FC<Props> = ({ onClick }) => {
 
   return (
     <>
-      <h3 className={styles.category}>Basic</h3>
+      <h3 className={styles.category}>Lifecycle</h3>
       {ROUTES_BY_CATEGORY.map(({ routes, title }, i) => (
         <div key={i}>
           {title && <h3 className={styles.title}>{title}</h3>}

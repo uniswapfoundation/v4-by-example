@@ -1,47 +1,17 @@
 {
-  "swap": [
-    "/swap"
-  ],
-  "trade": [
-    "/swap"
-  ],
-  "swapping": [
-    "/swap"
-  ],
-  "pool": [
-    "/initialize"
-  ],
-  "initialize": [
-    "/initialize"
-  ],
-  "init": [
-    "/initialize"
-  ],
-  "create": [
-    "/initialize"
-  ],
-  "pair": [
-    "/initialize"
-  ],
-  "factory": [
-    "/initialize"
-  ],
-  "liquidity": [
-    "/create-liquidity"
-  ],
-  "LP": [
-    "/create-liquidity"
-  ],
-  "lp": [
-    "/create-liquidity"
-  ],
-  "provide": [
-    "/create-liquidity"
-  ],
-  "provision": [
-    "/create-liquidity"
-  ],
-  "supply": [
-    "/create-liquidity"
-  ]
+  "swap": ["/swap"],
+  "trade": ["/swap"],
+  "swapping": ["/swap"],
+  "pool": ["/initialize"],
+  "initialize": ["/initialize"],
+  "init": ["/initialize"],
+  "create": ["/initialize"],
+  "pair": ["/initialize"],
+  "factory": ["/initialize"],
+  "liquidity": ["/create-liquidity"],
+  "LP": ["/create-liquidity"],
+  "lp": ["/create-liquidity"],
+  "provide": ["/create-liquidity"],
+  "provision": ["/create-liquidity"],
+  "supply": ["/create-liquidity"]
 }

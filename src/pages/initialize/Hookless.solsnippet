@@ -1,0 +1,21 @@
+IPoolManager manager = IPoolManager(0x01);
+
+address token0 = address(0x11);
+address token1 = address(0x22);
+uint24 swapFee = 500; // 0.05% fee tier
+int24 tickSpacing = 10;
+
+// floor(sqrt(1) * 2^96)
+uint160 startingPrice = 79228162514264337593543950336;
+
+// hookless pool doesnt expect any initialization data
+bytes memory hookData = new bytes(0);
+
+PoolKey memory pool = PoolKey({
+    currency0: Currency.wrap(token0),
+    currency1: Currency.wrap(token1),
+    fee: swapFee,
+    tickSpacing: tickSpacing,
+    hooks: IHooks(address(0x0)) // !!! Hookless pool is address(0x0)
+});
+manager.initialize(pool, startingPrice, hookData);

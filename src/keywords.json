@@ -1,23 +1,5 @@
 {
-  "/swap": [
-    "swap",
-    "trade",
-    "swapping"
-  ],
-  "/initialize": [
-    "pool",
-    "initialize",
-    "init",
-    "create",
-    "pair",
-    "factory"
-  ],
-  "/create-liquidity": [
-    "liquidity",
-    "LP",
-    "lp",
-    "provide",
-    "provision",
-    "supply"
-  ]
+  "/swap": ["swap", "trade", "swapping"],
+  "/initialize": ["pool", "initialize", "init", "create", "pair", "factory"],
+  "/create-liquidity": ["liquidity", "LP", "lp", "provide", "provision", "supply"]
 }
