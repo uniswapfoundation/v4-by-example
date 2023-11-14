@@ -8,9 +8,7 @@ import styles from "./index.module.css"
 import youTube from "../components/youtube.png"
 import { ROUTES, ROUTES_BY_CATEGORY, TRANSLATIONS } from "../nav"
 
-const UPDATES = [
-  "2023/10/18 - Initial V4 Snippets",
-]
+const UPDATES = ["2023/10/18 - Initial V4 Snippets"]
 
 export default function HomePage() {
   const [query, setQuery] = useState("")
@@ -120,8 +118,9 @@ export default function HomePage() {
       <div className={styles.subHeader}>v0.8.22</div>
       <div className={styles.main}>
         <p>
-          An introduction to integrating and using <a href="https://github.com/uniswap/v4-core">Uniswap v4</a> through
-          simple examples
+          An introduction to integrating and using{" "}
+          <a href="https://github.com/uniswap/v4-core">Uniswap v4</a> through simple
+          examples
         </p>
 
         <div className={styles.updates}>

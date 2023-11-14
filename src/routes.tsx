@@ -20,22 +20,22 @@ interface Route {
 }
 
 const routes: Route[] = [
-    {
-        path: "/create-liquidity",
-        component: component_create_liquidity
-    },
-    {
-        path: "/initialize",
-        component: component_initialize
-    },
-    {
-        path: "/swap",
-        component: component_swap
-    },
-    {
-        path: "",
-        component: component_
-    },
+  {
+    path: "/create-liquidity",
+    component: component_create_liquidity,
+  },
+  {
+    path: "/initialize",
+    component: component_initialize,
+  },
+  {
+    path: "/swap",
+    component: component_swap,
+  },
+  {
+    path: "",
+    component: component_,
+  },
 ]
 
 export default routes

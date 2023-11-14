@@ -38,10 +38,7 @@ function Footer() {
         </div>
       </div> */}
       <div className={styles.row}>
-        <a
-          href="https://github.com/uniswapfoundation/v4-by-example"
-          target="__blank"
-        >
+        <a href="https://github.com/uniswapfoundation/v4-by-example" target="__blank">
           source
         </a>
         <div className={styles.bar}>|</div>
@@ -50,6 +47,12 @@ function Footer() {
           target="__blank"
         >
           license
+        </a>
+      </div>
+      <div className={styles.row}>
+        (fork of&nbsp;
+        <a href="https://solidity-by-example.org" target="__blank">
+          solidity-by-example)
         </a>
       </div>
     </div>

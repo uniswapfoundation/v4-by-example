@@ -8,36 +8,30 @@ export interface Translation {
   url: string
 }
 
-export const TRANSLATIONS: Translation[] = [
-
-]
+export const TRANSLATIONS: Translation[] = []
 
 export const SOL_ROUTES: Route[] = [
   {
     path: "initialize",
-    title: "Initialize Pool"
+    title: "Initialize Pool",
   },
   {
     path: "create-liquidity",
-    title: "Create Liquidity"
+    title: "Create Liquidity",
   },
   {
     path: "swap",
-    title: "Swap"
+    title: "Swap",
   },
 ]
 
-export const APP_ROUTES: Route[] = [
-]
+export const APP_ROUTES: Route[] = []
 
-const HACK_ROUTES: Route[] = [
-]
+const HACK_ROUTES: Route[] = []
 
-export const TEST_ROUTES: Route[] = [
-]
+export const TEST_ROUTES: Route[] = []
 
-export const DEFI_ROUTES = [
-]
+export const DEFI_ROUTES = []
 
 export const ROUTES_BY_CATEGORY = [
   {
