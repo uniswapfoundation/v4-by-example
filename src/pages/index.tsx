@@ -8,7 +8,7 @@ import styles from "./index.module.css"
 import youTube from "../components/youtube.png"
 import { ROUTES, ROUTES_BY_CATEGORY, TRANSLATIONS } from "../nav"
 
-const UPDATES = ["2023/10/18 - Initial V4 Snippets"]
+const UPDATES = ["2023/11/13 - Make snippets concise", "2023/10/18 - Initial V4 Snippets"]
 
 export default function HomePage() {
   const [query, setQuery] = useState("")
