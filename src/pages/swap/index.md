@@ -7,9 +7,13 @@ keywords: [swap, trade, swapping]
 
 * Swap between tokens on a single pool
 
+Swapping will typically make use of a periphery contract. It is **not** recommended to directly swap with `poolManager.swap`
+
+---
+
 Using the `v4-core` provided *test* router, we can swap on a single pool. These snippets should only be used for non-production, testing purposes
 
-Swapping will typically make use of a periphery contract. It is **not** recommended to directly swap with `poolManager.swap`
+---
 
 Swapping involves 3 primary arguments:
 
