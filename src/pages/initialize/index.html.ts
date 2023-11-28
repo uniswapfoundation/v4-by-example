@@ -15,15 +15,15 @@ export const keywords = [
 export const codes = [
     {
         fileName: "HookDataInit.sol",
-        code: "SVBvb2xNYW5hZ2VyIG1hbmFnZXIgPSBJUG9vbE1hbmFnZXIoMHgwMSk7CgphZGRyZXNzIGhvb2sgPSBhZGRyZXNzKDB4ODApOyAvLyBwcmVmaXggaW5kaWNhdGVzIHRoZSBob29rIG9ubHkgaGFzIGEgYmVmb3JlSW5pdGlhbGl6ZSgpIGZ1bmN0aW9uCmFkZHJlc3MgdG9rZW4wID0gYWRkcmVzcygweDExKTsKYWRkcmVzcyB0b2tlbjEgPSBhZGRyZXNzKDB4MjIpOwp1aW50MjQgc3dhcEZlZSA9IDMwMDA7IC8vIDAuMzAlIGZlZSB0aWVyCmludDI0IHRpY2tTcGFjaW5nID0gNjA7CgovLyBmbG9vcihzcXJ0KDEpICogMl45NikKdWludDE2MCBzdGFydGluZ1ByaWNlID0gNzkyMjgxNjI1MTQyNjQzMzc1OTM1NDM5NTAzMzY7CgovLyBBc3N1bWUgdGhlIGN1c3RvbSBob29rIHJlcXVpcmVzIGEgdGltZXN0YW1wIHdoZW4gaW5pdGlhbGl6aW5nIGl0CmJ5dGVzIG1lbW9yeSBob29rRGF0YSA9IGFiaS5lbmNvZGUoYmxvY2sudGltZXN0YW1wKTsKClBvb2xLZXkgbWVtb3J5IHBvb2wgPSBQb29sS2V5KHsKICAgIGN1cnJlbmN5MDogQ3VycmVuY3kud3JhcCh0b2tlbjApLAogICAgY3VycmVuY3kxOiBDdXJyZW5jeS53cmFwKHRva2VuMSksCiAgICBmZWU6IHN3YXBGZWUsCiAgICB0aWNrU3BhY2luZzogdGlja1NwYWNpbmcsCiAgICBob29rczogSUhvb2tzKGhvb2spCn0pOwptYW5hZ2VyLmluaXRpYWxpemUocG9vbCwgc3RhcnRpbmdQcmljZSwgaG9va0RhdGEpOw==",
+        code: "UG9vbEluaXRpYWxpemVUZXN0IGluaXRpYWxpemVSb3V0ZXIgPSBQb29sSW5pdGlhbGl6ZVRlc3QoMHgwMSk7CgphZGRyZXNzIGhvb2sgPSBhZGRyZXNzKDB4ODApOyAvLyBwcmVmaXggaW5kaWNhdGVzIHRoZSBob29rIG9ubHkgaGFzIGEgYmVmb3JlSW5pdGlhbGl6ZSgpIGZ1bmN0aW9uCmFkZHJlc3MgdG9rZW4wID0gYWRkcmVzcygweDExKTsKYWRkcmVzcyB0b2tlbjEgPSBhZGRyZXNzKDB4MjIpOwp1aW50MjQgc3dhcEZlZSA9IDMwMDA7IC8vIDAuMzAlIGZlZSB0aWVyCmludDI0IHRpY2tTcGFjaW5nID0gNjA7CgovLyBmbG9vcihzcXJ0KDEpICogMl45NikKdWludDE2MCBzdGFydGluZ1ByaWNlID0gNzkyMjgxNjI1MTQyNjQzMzc1OTM1NDM5NTAzMzY7CgovLyBBc3N1bWUgdGhlIGN1c3RvbSBob29rIHJlcXVpcmVzIGEgdGltZXN0YW1wIHdoZW4gaW5pdGlhbGl6aW5nIGl0CmJ5dGVzIG1lbW9yeSBob29rRGF0YSA9IGFiaS5lbmNvZGUoYmxvY2sudGltZXN0YW1wKTsKClBvb2xLZXkgbWVtb3J5IHBvb2wgPSBQb29sS2V5KHsKICAgIGN1cnJlbmN5MDogQ3VycmVuY3kud3JhcCh0b2tlbjApLAogICAgY3VycmVuY3kxOiBDdXJyZW5jeS53cmFwKHRva2VuMSksCiAgICBmZWU6IHN3YXBGZWUsCiAgICB0aWNrU3BhY2luZzogdGlja1NwYWNpbmcsCiAgICBob29rczogSUhvb2tzKGhvb2spCn0pOwppbml0aWFsaXplUm91dGVyLmluaXRpYWxpemUocG9vbCwgc3RhcnRpbmdQcmljZSwgaG9va0RhdGEpOw==",
     },
     {
         fileName: "Hookless.sol",
-        code: "SVBvb2xNYW5hZ2VyIG1hbmFnZXIgPSBJUG9vbE1hbmFnZXIoMHgwMSk7CgphZGRyZXNzIHRva2VuMCA9IGFkZHJlc3MoMHgxMSk7CmFkZHJlc3MgdG9rZW4xID0gYWRkcmVzcygweDIyKTsKdWludDI0IHN3YXBGZWUgPSA1MDA7IC8vIDAuMDUlIGZlZSB0aWVyCmludDI0IHRpY2tTcGFjaW5nID0gMTA7CgovLyBmbG9vcihzcXJ0KDEpICogMl45NikKdWludDE2MCBzdGFydGluZ1ByaWNlID0gNzkyMjgxNjI1MTQyNjQzMzc1OTM1NDM5NTAzMzY7CgovLyBob29rbGVzcyBwb29sIGRvZXNudCBleHBlY3QgYW55IGluaXRpYWxpemF0aW9uIGRhdGEKYnl0ZXMgbWVtb3J5IGhvb2tEYXRhID0gbmV3IGJ5dGVzKDApOwoKUG9vbEtleSBtZW1vcnkgcG9vbCA9IFBvb2xLZXkoewogICAgY3VycmVuY3kwOiBDdXJyZW5jeS53cmFwKHRva2VuMCksCiAgICBjdXJyZW5jeTE6IEN1cnJlbmN5LndyYXAodG9rZW4xKSwKICAgIGZlZTogc3dhcEZlZSwKICAgIHRpY2tTcGFjaW5nOiB0aWNrU3BhY2luZywKICAgIGhvb2tzOiBJSG9va3MoYWRkcmVzcygweDApKSAvLyAhISEgSG9va2xlc3MgcG9vbCBpcyBhZGRyZXNzKDB4MCkKfSk7Cm1hbmFnZXIuaW5pdGlhbGl6ZShwb29sLCBzdGFydGluZ1ByaWNlLCBob29rRGF0YSk7",
+        code: "UG9vbEluaXRpYWxpemVUZXN0IGluaXRpYWxpemVSb3V0ZXIgPSBQb29sSW5pdGlhbGl6ZVRlc3QoMHgwMSk7CgphZGRyZXNzIHRva2VuMCA9IGFkZHJlc3MoMHgxMSk7CmFkZHJlc3MgdG9rZW4xID0gYWRkcmVzcygweDIyKTsKdWludDI0IHN3YXBGZWUgPSA1MDA7IC8vIDAuMDUlIGZlZSB0aWVyCmludDI0IHRpY2tTcGFjaW5nID0gMTA7CgovLyBmbG9vcihzcXJ0KDEpICogMl45NikKdWludDE2MCBzdGFydGluZ1ByaWNlID0gNzkyMjgxNjI1MTQyNjQzMzc1OTM1NDM5NTAzMzY7CgovLyBob29rbGVzcyBwb29sIGRvZXNudCBleHBlY3QgYW55IGluaXRpYWxpemF0aW9uIGRhdGEKYnl0ZXMgbWVtb3J5IGhvb2tEYXRhID0gbmV3IGJ5dGVzKDApOwoKUG9vbEtleSBtZW1vcnkgcG9vbCA9IFBvb2xLZXkoewogICAgY3VycmVuY3kwOiBDdXJyZW5jeS53cmFwKHRva2VuMCksCiAgICBjdXJyZW5jeTE6IEN1cnJlbmN5LndyYXAodG9rZW4xKSwKICAgIGZlZTogc3dhcEZlZSwKICAgIHRpY2tTcGFjaW5nOiB0aWNrU3BhY2luZywKICAgIGhvb2tzOiBJSG9va3MoYWRkcmVzcygweDApKSAvLyAhISEgSG9va2xlc3MgcG9vbCBpcyBhZGRyZXNzKDB4MCkKfSk7CmluaXRpYWxpemVSb3V0ZXIuaW5pdGlhbGl6ZShwb29sLCBzdGFydGluZ1ByaWNlLCBob29rRGF0YSk7",
     },
     {
         fileName: "PoolInitialize.sol",
-        code: "Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVApwcmFnbWEgc29saWRpdHkgXjAuOC4yMDsKCmltcG9ydCB7SVBvb2xNYW5hZ2VyfSBmcm9tICJAdW5pc3dhcC92NC1jb3JlL2NvbnRyYWN0cy9pbnRlcmZhY2VzL0lQb29sTWFuYWdlci5zb2wiOwppbXBvcnQge0lIb29rc30gZnJvbSAiQHVuaXN3YXAvdjQtY29yZS9jb250cmFjdHMvaW50ZXJmYWNlcy9JSG9va3Muc29sIjsKaW1wb3J0IHtQb29sS2V5fSBmcm9tICJAdW5pc3dhcC92NC1jb3JlL2NvbnRyYWN0cy90eXBlcy9Qb29sS2V5LnNvbCI7CmltcG9ydCB7Q3VycmVuY3lMaWJyYXJ5LCBDdXJyZW5jeX0gZnJvbSAiQHVuaXN3YXAvdjQtY29yZS9jb250cmFjdHMvdHlwZXMvQ3VycmVuY3kuc29sIjsKCmNvbnRyYWN0IFBvb2xJbml0aWFsaXplIHsKICAgIHVzaW5nIEN1cnJlbmN5TGlicmFyeSBmb3IgQ3VycmVuY3k7CgogICAgLy8gc2V0IHRoZSBwb29sIG1hbmFnZXIgYWRkcmVzcwogICAgSVBvb2xNYW5hZ2VyIG1hbmFnZXIgPSBJUG9vbE1hbmFnZXIoMHgwMSk7CgogICAgZnVuY3Rpb24gaW5pdCgKICAgICAgICBhZGRyZXNzIHRva2VuMCwKICAgICAgICBhZGRyZXNzIHRva2VuMSwKICAgICAgICB1aW50MjQgc3dhcEZlZSwKICAgICAgICBpbnQyNCB0aWNrU3BhY2luZywKICAgICAgICBhZGRyZXNzIGhvb2ssCiAgICAgICAgdWludDE2MCBzcXJ0UHJpY2VYOTYsCiAgICAgICAgYnl0ZXMgY2FsbGRhdGEgaG9va0RhdGEKICAgICkgZXh0ZXJuYWwgewogICAgICAgIC8vIHNvcnQgeW91ciB0b2tlbnMhIHY0IHJlcXVpcmVzIHRva2VuMCA8IHRva2VuMQogICAgICAgIGlmICh0b2tlbjAgPiB0b2tlbjEpIHsKICAgICAgICAgICAgKHRva2VuMCwgdG9rZW4xKSA9ICh0b2tlbjEsIHRva2VuMCk7CiAgICAgICAgfQoKICAgICAgICBQb29sS2V5IG1lbW9yeSBwb29sID0gUG9vbEtleSh7CiAgICAgICAgICAgIGN1cnJlbmN5MDogQ3VycmVuY3kud3JhcCh0b2tlbjApLAogICAgICAgICAgICBjdXJyZW5jeTE6IEN1cnJlbmN5LndyYXAodG9rZW4xKSwKICAgICAgICAgICAgZmVlOiBzd2FwRmVlLAogICAgICAgICAgICB0aWNrU3BhY2luZzogdGlja1NwYWNpbmcsCiAgICAgICAgICAgIGhvb2tzOiBJSG9va3MoaG9vaykKICAgICAgICB9KTsKICAgICAgICBtYW5hZ2VyLmluaXRpYWxpemUocG9vbCwgc3FydFByaWNlWDk2LCBob29rRGF0YSk7CiAgICB9Cn0K",
+        code: "Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVApwcmFnbWEgc29saWRpdHkgXjAuOC4yMDsKCmltcG9ydCB7SVBvb2xNYW5hZ2VyfSBmcm9tICJAdW5pc3dhcC92NC1jb3JlL2NvbnRyYWN0cy9pbnRlcmZhY2VzL0lQb29sTWFuYWdlci5zb2wiOwppbXBvcnQge1Bvb2xJbml0aWFsaXplVGVzdH0gZnJvbSAiQHVuaXN3YXAvdjQtY29yZS9jb250cmFjdHMvdGVzdC9Qb29sSW5pdGlhbGl6ZVRlc3Quc29sIjsKaW1wb3J0IHtJSG9va3N9IGZyb20gIkB1bmlzd2FwL3Y0LWNvcmUvY29udHJhY3RzL2ludGVyZmFjZXMvSUhvb2tzLnNvbCI7CmltcG9ydCB7UG9vbEtleX0gZnJvbSAiQHVuaXN3YXAvdjQtY29yZS9jb250cmFjdHMvdHlwZXMvUG9vbEtleS5zb2wiOwppbXBvcnQge0N1cnJlbmN5TGlicmFyeSwgQ3VycmVuY3l9IGZyb20gIkB1bmlzd2FwL3Y0LWNvcmUvY29udHJhY3RzL3R5cGVzL0N1cnJlbmN5LnNvbCI7Cgpjb250cmFjdCBQb29sSW5pdGlhbGl6ZSB7CiAgICB1c2luZyBDdXJyZW5jeUxpYnJhcnkgZm9yIEN1cnJlbmN5OwoKICAgIC8vIHNldCB0aGUgaW5pdGlhbGl6ZSByb3V0ZXIKICAgIFBvb2xJbml0aWFsaXplVGVzdCBpbml0aWFsaXplUm91dGVyID0gUG9vbEluaXRpYWxpemVUZXN0KDB4MDIpOwoKICAgIGZ1bmN0aW9uIGluaXQoCiAgICAgICAgYWRkcmVzcyB0b2tlbjAsCiAgICAgICAgYWRkcmVzcyB0b2tlbjEsCiAgICAgICAgdWludDI0IHN3YXBGZWUsCiAgICAgICAgaW50MjQgdGlja1NwYWNpbmcsCiAgICAgICAgYWRkcmVzcyBob29rLAogICAgICAgIHVpbnQxNjAgc3FydFByaWNlWDk2LAogICAgICAgIGJ5dGVzIGNhbGxkYXRhIGhvb2tEYXRhCiAgICApIGV4dGVybmFsIHsKICAgICAgICAvLyBzb3J0IHlvdXIgdG9rZW5zISB2NCByZXF1aXJlcyB0b2tlbjAgPCB0b2tlbjEKICAgICAgICBpZiAodG9rZW4wID4gdG9rZW4xKSB7CiAgICAgICAgICAgICh0b2tlbjAsIHRva2VuMSkgPSAodG9rZW4xLCB0b2tlbjApOwogICAgICAgIH0KCiAgICAgICAgUG9vbEtleSBtZW1vcnkgcG9vbCA9IFBvb2xLZXkoewogICAgICAgICAgICBjdXJyZW5jeTA6IEN1cnJlbmN5LndyYXAodG9rZW4wKSwKICAgICAgICAgICAgY3VycmVuY3kxOiBDdXJyZW5jeS53cmFwKHRva2VuMSksCiAgICAgICAgICAgIGZlZTogc3dhcEZlZSwKICAgICAgICAgICAgdGlja1NwYWNpbmc6IHRpY2tTcGFjaW5nLAogICAgICAgICAgICBob29rczogSUhvb2tzKGhvb2spCiAgICAgICAgfSk7CiAgICAgICAgaW5pdGlhbGl6ZVJvdXRlci5pbml0aWFsaXplKHBvb2wsIHNxcnRQcmljZVg5NiwgaG9va0RhdGEpOwogICAgfQp9Cg==",
     },
 ]
 
@@ -45,6 +45,7 @@ const html = `<ul>
 <span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
 
 <span class="hljs-keyword">import</span> {<span class="hljs-title">IPoolManager</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@uniswap/v4-core/contracts/interfaces/IPoolManager.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">PoolInitializeTest</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@uniswap/v4-core/contracts/test/PoolInitializeTest.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">IHooks</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@uniswap/v4-core/contracts/interfaces/IHooks.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">PoolKey</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@uniswap/v4-core/contracts/types/PoolKey.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">CurrencyLibrary</span>, <span class="hljs-title">Currency</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@uniswap/v4-core/contracts/types/Currency.sol"</span>;
@@ -52,8 +53,8 @@ const html = `<ul>
 <span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">PoolInitialize</span> </span>{
     <span class="hljs-keyword">using</span> <span class="hljs-title">CurrencyLibrary</span> <span class="hljs-title"><span class="hljs-keyword">for</span></span> <span class="hljs-title">Currency</span>;
 
-    <span class="hljs-comment">// set the pool manager address</span>
-    IPoolManager manager <span class="hljs-operator">=</span> IPoolManager(<span class="hljs-number">0x01</span>);
+    <span class="hljs-comment">// set the initialize router</span>
+    PoolInitializeTest initializeRouter <span class="hljs-operator">=</span> PoolInitializeTest(<span class="hljs-number">0x02</span>);
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params">
         <span class="hljs-keyword">address</span> token0,
@@ -76,12 +77,12 @@ const html = `<ul>
             tickSpacing: tickSpacing,
             hooks: IHooks(hook)
         });
-        manager.initialize(pool, sqrtPriceX96, hookData);
+        initializeRouter.initialize(pool, sqrtPriceX96, hookData);
     }
 }
 </code></pre><h3>Examples of Initializing a V4 Pool</h3>
 <p><em>Hooks are not mandatory, you can create a pool without a hook</em></p>
-<pre><code class="language-solidity">IPoolManager manager <span class="hljs-operator">=</span> IPoolManager(<span class="hljs-number">0x01</span>);
+<pre><code class="language-solidity">PoolInitializeTest initializeRouter <span class="hljs-operator">=</span> PoolInitializeTest(<span class="hljs-number">0x01</span>);
 
 <span class="hljs-keyword">address</span> token0 <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(<span class="hljs-number">0x11</span>);
 <span class="hljs-keyword">address</span> token1 <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(<span class="hljs-number">0x22</span>);
@@ -101,9 +102,9 @@ PoolKey <span class="hljs-keyword">memory</span> pool <span class="hljs-operator
     tickSpacing: tickSpacing,
     hooks: IHooks(<span class="hljs-keyword">address</span>(<span class="hljs-number">0x0</span>)) <span class="hljs-comment">// !!! Hookless pool is address(0x0)</span>
 });
-manager.initialize(pool, startingPrice, hookData);
+initializeRouter.initialize(pool, startingPrice, hookData);
 </code></pre><p><em>Some hooks may require initialization data, i.e. <code>block.timestamp</code></em></p>
-<pre><code class="language-solidity">IPoolManager manager <span class="hljs-operator">=</span> IPoolManager(<span class="hljs-number">0x01</span>);
+<pre><code class="language-solidity">PoolInitializeTest initializeRouter <span class="hljs-operator">=</span> PoolInitializeTest(<span class="hljs-number">0x01</span>);
 
 <span class="hljs-keyword">address</span> hook <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(<span class="hljs-number">0x80</span>); <span class="hljs-comment">// prefix indicates the hook only has a beforeInitialize() function</span>
 <span class="hljs-keyword">address</span> token0 <span class="hljs-operator">=</span> <span class="hljs-keyword">address</span>(<span class="hljs-number">0x11</span>);
@@ -124,7 +125,7 @@ PoolKey <span class="hljs-keyword">memory</span> pool <span class="hljs-operator
     tickSpacing: tickSpacing,
     hooks: IHooks(hook)
 });
-manager.initialize(pool, startingPrice, hookData);
+initializeRouter.initialize(pool, startingPrice, hookData);
 </code></pre>`
 
 export default html
