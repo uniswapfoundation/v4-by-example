@@ -1,5 +1,32 @@
 {
-  "/swap": ["swap", "trade", "swapping"],
-  "/initialize": ["pool", "initialize", "init", "create", "pair", "factory"],
-  "/create-liquidity": ["liquidity", "LP", "lp", "provide", "provision", "supply"]
+  "/swap": [
+    "swap",
+    "trade",
+    "swapping"
+  ],
+  "/initialize": [
+    "pool",
+    "initialize",
+    "init",
+    "create",
+    "pair",
+    "factory"
+  ],
+  "/hooks/no-op": [
+    "hook",
+    "hooks",
+    "noop",
+    "no-op",
+    "skip",
+    "swap",
+    "skip swap"
+  ],
+  "/create-liquidity": [
+    "liquidity",
+    "LP",
+    "lp",
+    "provide",
+    "provision",
+    "supply"
+  ]
 }

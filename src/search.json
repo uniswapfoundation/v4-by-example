@@ -1,17 +1,66 @@
 {
-  "swap": ["/swap"],
-  "trade": ["/swap"],
-  "swapping": ["/swap"],
-  "pool": ["/initialize"],
-  "initialize": ["/initialize"],
-  "init": ["/initialize"],
-  "create": ["/initialize"],
-  "pair": ["/initialize"],
-  "factory": ["/initialize"],
-  "liquidity": ["/create-liquidity"],
-  "LP": ["/create-liquidity"],
-  "lp": ["/create-liquidity"],
-  "provide": ["/create-liquidity"],
-  "provision": ["/create-liquidity"],
-  "supply": ["/create-liquidity"]
+  "swap": [
+    "/swap",
+    "/hooks/no-op"
+  ],
+  "trade": [
+    "/swap"
+  ],
+  "swapping": [
+    "/swap"
+  ],
+  "pool": [
+    "/initialize"
+  ],
+  "initialize": [
+    "/initialize"
+  ],
+  "init": [
+    "/initialize"
+  ],
+  "create": [
+    "/initialize"
+  ],
+  "pair": [
+    "/initialize"
+  ],
+  "factory": [
+    "/initialize"
+  ],
+  "hook": [
+    "/hooks/no-op"
+  ],
+  "hooks": [
+    "/hooks/no-op"
+  ],
+  "noop": [
+    "/hooks/no-op"
+  ],
+  "no-op": [
+    "/hooks/no-op"
+  ],
+  "skip": [
+    "/hooks/no-op"
+  ],
+  "skip swap": [
+    "/hooks/no-op"
+  ],
+  "liquidity": [
+    "/create-liquidity"
+  ],
+  "LP": [
+    "/create-liquidity"
+  ],
+  "lp": [
+    "/create-liquidity"
+  ],
+  "provide": [
+    "/create-liquidity"
+  ],
+  "provision": [
+    "/create-liquidity"
+  ],
+  "supply": [
+    "/create-liquidity"
+  ]
 }

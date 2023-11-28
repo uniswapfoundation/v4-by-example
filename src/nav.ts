@@ -25,7 +25,12 @@ export const SOL_ROUTES: Route[] = [
   },
 ]
 
-export const APP_ROUTES: Route[] = []
+export const HOOK_ROUTES: Route[] = [
+  {
+    path: "no-op",
+    title: "No Op"
+  }
+]
 
 const HACK_ROUTES: Route[] = []
 
@@ -41,13 +46,13 @@ export const ROUTES_BY_CATEGORY = [
       path: `/${route.path}`,
     })),
   },
-  // {
-  //   title: "Applications",
-  //   routes: APP_ROUTES.map((route) => ({
-  //     ...route,
-  //     path: `/app/${route.path}`,
-  //   })),
-  // },
+  {
+    title: "Hooks",
+    routes: HOOK_ROUTES.map((route) => ({
+      ...route,
+      path: `/hooks/${route.path}`,
+    })),
+  },
   // {
   //   title: "Hacks",
   //   routes: HACK_ROUTES.map((route) => ({
