@@ -2,6 +2,7 @@
 pragma solidity ^0.8.20;
 
 import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
+import {PoolInitializeTest} from "@uniswap/v4-core/contracts/test/PoolInitializeTest.sol";
 import {IHooks} from "@uniswap/v4-core/contracts/interfaces/IHooks.sol";
 import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
 import {CurrencyLibrary, Currency} from "@uniswap/v4-core/contracts/types/Currency.sol";
@@ -9,8 +10,8 @@ import {CurrencyLibrary, Currency} from "@uniswap/v4-core/contracts/types/Curren
 contract PoolInitialize {
     using CurrencyLibrary for Currency;
 
-    // set the pool manager address
-    IPoolManager manager = IPoolManager(0x01);
+    // set the initialize router
+    PoolInitializeTest initializeRouter = PoolInitializeTest(0x02);
 
     function init(
         address token0,
@@ -33,6 +34,6 @@ contract PoolInitialize {
             tickSpacing: tickSpacing,
             hooks: IHooks(hook)
         });
-        manager.initialize(pool, sqrtPriceX96, hookData);
+        initializeRouter.initialize(pool, sqrtPriceX96, hookData);
     }
 }
