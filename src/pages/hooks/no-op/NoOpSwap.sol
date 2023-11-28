@@ -7,16 +7,9 @@ import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
 import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
 import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
 import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
-import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
 
 contract NoOpSwap is BaseHook {
     using PoolIdLibrary for PoolKey;
-
-    // NOTE: ---------------------------------------------------------
-    // state variables should typically be unique to a pool
-    // a single hook contract should be able to service multiple pools
-    // ---------------------------------------------------------------
-
     mapping(PoolId => uint256 count) public beforeSwapCount;
     mapping(PoolId => uint256 count) public afterSwapCount;
 
@@ -28,17 +21,13 @@ contract NoOpSwap is BaseHook {
             afterInitialize: false,
             beforeModifyPosition: false,
             afterModifyPosition: false,
-            beforeSwap: true,
-            afterSwap: true,
+            beforeSwap: true, // -- No-op'ing the swap --  //
+            afterSwap: false,
             beforeDonate: false,
             afterDonate: false,
-            noOp: true
+            noOp: true // -- ENABLE NO-OP --  //
         });
     }
-
-    // -----------------------------------------------
-    // NOTE: see IHooks.sol for function documentation
-    // -----------------------------------------------
 
     function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params, bytes calldata)
         external
@@ -46,20 +35,11 @@ contract NoOpSwap is BaseHook {
         returns (bytes4)
     {
         // ------------------------------------------------------------------------------- //
-        // Example NoOp: if params.amountSpecified = 69e18, then the swap will be skipped  //
+        // Example NoOp: if swap amount is 69e18, then the swap will be skipped            //
         // ------------------------------------------------------------------------------- //
         if (params.amountSpecified == 69e18) return Hooks.NO_OP_SELECTOR;
 
         beforeSwapCount[key.toId()]++;
         return BaseHook.beforeSwap.selector;
-    }
-
-    function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
-        external
-        override
-        returns (bytes4)
-    {
-        afterSwapCount[key.toId()]++;
-        return BaseHook.afterSwap.selector;
     }
 }
