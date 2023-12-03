@@ -49,15 +49,7 @@ contract FixedHookFee is BaseHook {
 
     /// @dev Hook fees are kept as PoolManager claims, so collecting ERC20s will require locking
     function collectFee(address recipient, Currency currency) external returns (uint256 amount) {
-        amount = abi.decode(
-            poolManager.lock(
-                abi.encodeCall(
-                    this.handleCollectFee,
-                    (recipient, currency)
-                )
-            ),
-            (uint256)
-        );
+        amount = abi.decode(poolManager.lock(abi.encodeCall(this.handleCollectFee, (recipient, currency))), (uint256));
     }
 
     /// @dev requires the lock pattern in order to call poolManager.burn

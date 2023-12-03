@@ -1,0 +1,16 @@
+import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
+
+function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+    return Hooks.Permissions({
+        beforeInitialize: false,
+        afterInitialize: false,
+        beforeModifyPosition: false,
+        afterModifyPosition: false,
+        beforeSwap: true,
+        afterSwap: false,
+        beforeDonate: false,
+        afterDonate: false,
+        noOp: false,
+        accessLock: true // -- ENABLE ACCESS LOCK --  //
+    });
+}
