@@ -21,6 +21,13 @@
     "swap",
     "skip swap"
   ],
+  "/fees/fixed-hook-fee": [
+    "hook",
+    "hooks",
+    "fee",
+    "static fee",
+    "hook fee"
+  ],
   "/create-liquidity": [
     "liquidity",
     "LP",

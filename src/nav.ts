@@ -32,7 +32,12 @@ export const HOOK_ROUTES: Route[] = [
   }
 ]
 
-const HACK_ROUTES: Route[] = []
+const FEE_ROUTES: Route[] = [
+  {
+    path: "fixed-hook-fee",
+    title: "Static Hook Fee"
+  }
+]
 
 export const TEST_ROUTES: Route[] = []
 
@@ -53,13 +58,13 @@ export const ROUTES_BY_CATEGORY = [
       path: `/hooks/${route.path}`,
     })),
   },
-  // {
-  //   title: "Hacks",
-  //   routes: HACK_ROUTES.map((route) => ({
-  //     ...route,
-  //     path: `/hacks/${route.path}`,
-  //   })),
-  // },
+  {
+    title: "Fees",
+    routes: FEE_ROUTES.map((route) => ({
+      ...route,
+      path: `/fees/${route.path}`,
+    })),
+  },
   // {
   //   title: "Tests",
   //   routes: TEST_ROUTES.map((route) => ({

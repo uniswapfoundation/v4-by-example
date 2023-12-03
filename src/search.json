@@ -28,10 +28,12 @@
     "/initialize"
   ],
   "hook": [
-    "/hooks/no-op"
+    "/hooks/no-op",
+    "/fees/fixed-hook-fee"
   ],
   "hooks": [
-    "/hooks/no-op"
+    "/hooks/no-op",
+    "/fees/fixed-hook-fee"
   ],
   "noop": [
     "/hooks/no-op"
@@ -44,6 +46,15 @@
   ],
   "skip swap": [
     "/hooks/no-op"
+  ],
+  "fee": [
+    "/fees/fixed-hook-fee"
+  ],
+  "static fee": [
+    "/fees/fixed-hook-fee"
+  ],
+  "hook fee": [
+    "/fees/fixed-hook-fee"
   ],
   "liquidity": [
     "/create-liquidity"

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {BaseHook} from "v4-periphery/BaseHook.sol";
+import {BaseHook} from "../forks/BaseHook.sol";
 
 import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
 import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
@@ -22,8 +22,8 @@ contract NoOpSwap is BaseHook {
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
 
-    function getHooksCalls() public pure override returns (Hooks.Calls memory) {
-        return Hooks.Calls({
+    function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
+        return Hooks.Permissions({
             beforeInitialize: false,
             afterInitialize: false,
             beforeModifyPosition: false,
@@ -32,7 +32,8 @@ contract NoOpSwap is BaseHook {
             afterSwap: true,
             beforeDonate: false,
             afterDonate: false,
-            noOp: true
+            noOp: true,
+            accessLock: false
         });
     }
 
