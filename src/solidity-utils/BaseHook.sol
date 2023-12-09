@@ -7,11 +7,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
-import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import {IHooks} from "@uniswap/v4-core/contracts/interfaces/IHooks.sol";
-import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
-import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
+import {Hooks} from "v4-core/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
+import {IHooks} from "v4-core/interfaces/IHooks.sol";
+import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
+import {PoolKey} from "v4-core/types/PoolKey.sol";
 
 abstract contract BaseHook is IHooks {
     error NotPoolManager();
@@ -55,7 +55,7 @@ abstract contract BaseHook is IHooks {
         Hooks.validateHookPermissions(_this, getHookPermissions());
     }
 
-    function lockAcquired(bytes calldata data) external virtual poolManagerOnly returns (bytes memory) {
+    function lockAcquired(address, bytes calldata data) external virtual poolManagerOnly returns (bytes memory) {
         (bool success, bytes memory returnData) = address(this).call(data);
         if (success) return returnData;
         if (returnData.length == 0) revert LockFailure();
