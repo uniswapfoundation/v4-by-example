@@ -11,9 +11,9 @@ import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
 import {Constants} from "@uniswap/v4-core/contracts/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "@uniswap/v4-core/contracts/types/Currency.sol";
-import {HookTest} from "../utils/HookTest.sol";
-import {NoOpSwap} from "../../src/examples/NoOpSwap.sol";
-import {HookMiner} from "../utils/HookMiner.sol";
+import {HookTest} from "./utils/HookTest.sol";
+import {NoOpSwap} from "../src/pages/hooks/no-op/NoOpSwap.sol";
+import {HookMiner} from "./utils/HookMiner.sol";
 
 contract NoOpSwapTest is HookTest {
     using PoolIdLibrary for PoolKey;
