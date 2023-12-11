@@ -51,7 +51,6 @@ contract NoOpSwapTest is HookTest {
 
     function test_noOp() public {
         assertEq(hook.beforeSwapCount(poolId), 0);
-        assertEq(hook.afterSwapCount(poolId), 0);
 
         // Perform a test swap //
         int256 amount = 69e18;
@@ -64,12 +63,10 @@ contract NoOpSwapTest is HookTest {
 
         // Swapping with 69e18 will skip the swap logic!
         assertEq(hook.beforeSwapCount(poolId), 0);
-        assertEq(hook.afterSwapCount(poolId), 0);
     }
 
     function test_swap() public {
         assertEq(hook.beforeSwapCount(poolId), 0);
-        assertEq(hook.afterSwapCount(poolId), 0);
 
         // Perform a test swap //
         int256 amount = 1e18;
@@ -80,6 +77,5 @@ contract NoOpSwapTest is HookTest {
         assertEq(int256(swapDelta.amount0()), amount);
 
         assertEq(hook.beforeSwapCount(poolId), 1);
-        assertEq(hook.afterSwapCount(poolId), 1);
     }
 }

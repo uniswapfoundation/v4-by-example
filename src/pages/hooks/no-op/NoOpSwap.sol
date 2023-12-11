@@ -12,7 +12,6 @@ contract NoOpSwap is BaseHook {
     using PoolIdLibrary for PoolKey;
 
     mapping(PoolId => uint256 count) public beforeSwapCount;
-    mapping(PoolId => uint256 count) public afterSwapCount;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
 
