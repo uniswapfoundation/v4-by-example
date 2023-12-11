@@ -12,7 +12,7 @@ import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {HookTest} from "./utils/HookTest.sol";
-import {NoOpSwap} from "../src/pages/hooks/no-op/NoOpSwap.sol";
+import {NoOpSwap} from "@v4-by-example/pages/hooks/no-op/NoOpSwap.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 
 contract NoOpSwapTest is HookTest {
@@ -28,7 +28,7 @@ contract NoOpSwapTest is HookTest {
         HookTest.initHookTestEnv();
 
         // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.NO_OP_FLAG);
+        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.NO_OP_FLAG);
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(NoOpSwap).creationCode, abi.encode(address(manager)));
         hook = new NoOpSwap{salt: salt}(IPoolManager(address(manager)));

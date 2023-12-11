@@ -12,7 +12,7 @@ import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {HookTest} from "./utils/HookTest.sol";
-import {Counter} from "../src/Counter.sol";
+import {Counter} from "./Counter.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 
 contract CounterTest is HookTest {

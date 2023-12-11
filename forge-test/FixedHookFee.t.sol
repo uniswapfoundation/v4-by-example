@@ -11,9 +11,9 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "../utils/HookTest.sol";
-import {FixedHookFee} from "../../src/examples/FixedHookFee.sol";
-import {HookMiner} from "../utils/HookMiner.sol";
+import {HookTest} from "./utils/HookTest.sol";
+import {FixedHookFee} from "@v4-by-example/pages/fees/fixed-hook-fee/FixedHookFee.sol";
+import {HookMiner} from "./utils/HookMiner.sol";
 
 contract FixedHookFeeTest is HookTest {
     using PoolIdLibrary for PoolKey;

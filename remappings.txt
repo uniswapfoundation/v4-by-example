@@ -1,4 +1,4 @@
-@v4-by-example=src/solidity-utils
+@v4-by-example/=src/
 @ensdomains/=forge-lib/v4-core/node_modules/@ensdomains/
 @openzeppelin/=forge-lib/v4-core/lib/openzeppelin-contracts/
 ds-test/=forge-lib/v4-core/lib/forge-std/lib/ds-test/src/

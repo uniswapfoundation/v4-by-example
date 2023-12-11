@@ -2,6 +2,7 @@
 src = "src/pages"
 out = "out"
 libs = ["forge-lib"]
+test = "forge-test"
 ffi = true
 fs_permissions = [{ access = "read-write", path = ".forge-snapshots/"}]
 cancun = true

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 // TODO: update to v4-periphery/BaseHook.sol when its compatible
-import {BaseHook} from "./forks/BaseHook.sol";
+import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
 import {Hooks} from "v4-core/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
