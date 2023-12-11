@@ -5,6 +5,7 @@ import styles from "./App.module.css"
 import Layout from "./components/Layout"
 import routes from "./routes"
 import { getPrevNextPaths } from "./nav"
+import { Analytics} from "@vercel/analytics/react";
 
 function App() {
   const { state, init } = useAppContext()
@@ -20,7 +21,8 @@ function App() {
   }
 
   return (
-    <Router basename={import.meta.env.VITE_PUBLIC_URL}>
+    <Router basename={import.meta.env.VITE_PUBLIC_URL}>'
+      <Analytics/>
       <Layout>
         <Routes>
           {routes.map((route) => {

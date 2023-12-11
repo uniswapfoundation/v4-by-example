@@ -27,6 +27,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "highlight.js": "^11.8.0",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
