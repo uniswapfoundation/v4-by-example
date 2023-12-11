@@ -29,23 +29,33 @@
   ],
   "hook": [
     "/hooks/no-op",
+    "/hooks/custom-curve",
     "/fees/fixed-hook-fee"
   ],
   "hooks": [
     "/hooks/no-op",
+    "/hooks/custom-curve",
     "/fees/fixed-hook-fee"
   ],
   "noop": [
-    "/hooks/no-op"
+    "/hooks/no-op",
+    "/hooks/custom-curve"
   ],
   "no-op": [
-    "/hooks/no-op"
+    "/hooks/no-op",
+    "/hooks/custom-curve"
   ],
   "skip": [
     "/hooks/no-op"
   ],
   "skip swap": [
     "/hooks/no-op"
+  ],
+  "custom curve": [
+    "/hooks/custom-curve"
+  ],
+  "custom accounting": [
+    "/hooks/custom-curve"
   ],
   "fee": [
     "/fees/fixed-hook-fee"

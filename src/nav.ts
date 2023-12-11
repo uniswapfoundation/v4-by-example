@@ -29,6 +29,10 @@ export const HOOK_ROUTES: Route[] = [
   {
     path: "no-op",
     title: "No Op"
+  },
+  {
+    path: "custom-curve",
+    title: "Custom Curve"
   }
 ]
 
