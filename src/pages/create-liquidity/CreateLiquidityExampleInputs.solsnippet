@@ -1,4 +1,4 @@
-import {PoolModifyPositionTest} from "@uniswap/v4-core/contracts/test/PoolModifyPositionTest.sol";
+import {PoolModifyPositionTest} from "v4-core/test/PoolModifyPositionTest.sol";
 
 PoolModifyPositionTest lpRouter = PoolModifyPositionTest(0x01);
 address token0 = address(0x11);

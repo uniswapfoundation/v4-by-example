@@ -2,14 +2,14 @@
 pragma solidity ^0.8.19;
 
 // TODO: update to v4-periphery/BaseHook.sol when its compatible
-import {BaseHook} from "../forks/BaseHook.sol";
+import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
-import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
-import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
-import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
-import {BalanceDelta} from "@uniswap/v4-core/contracts/types/BalanceDelta.sol";
-import {Currency, CurrencyLibrary} from "@uniswap/v4-core/contracts/types/Currency.sol";
+import {Hooks} from "v4-core/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
+import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
+import {Currency, CurrencyLibrary} from "v4-core/types/Currency.sol";
 
 contract FixedHookFee is BaseHook {
     using PoolIdLibrary for PoolKey;
@@ -49,7 +49,9 @@ contract FixedHookFee is BaseHook {
 
     /// @dev Hook fees are kept as PoolManager claims, so collecting ERC20s will require locking
     function collectFee(address recipient, Currency currency) external returns (uint256 amount) {
-        amount = abi.decode(poolManager.lock(abi.encodeCall(this.handleCollectFee, (recipient, currency))), (uint256));
+        amount = abi.decode(
+            poolManager.lock(address(this), abi.encodeCall(this.handleCollectFee, (recipient, currency))), (uint256)
+        );
     }
 
     /// @dev requires the lock pattern in order to call poolManager.burn

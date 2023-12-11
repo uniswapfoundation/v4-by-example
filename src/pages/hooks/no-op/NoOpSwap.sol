@@ -1,18 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {BaseHook} from "v4-periphery/BaseHook.sol";
+import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
-import {Hooks} from "@uniswap/v4-core/contracts/libraries/Hooks.sol";
-import {IPoolManager} from "@uniswap/v4-core/contracts/interfaces/IPoolManager.sol";
-import {PoolKey} from "@uniswap/v4-core/contracts/types/PoolKey.sol";
-import {PoolId, PoolIdLibrary} from "@uniswap/v4-core/contracts/types/PoolId.sol";
+import {Hooks} from "v4-core/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 
 contract NoOpSwap is BaseHook {
     using PoolIdLibrary for PoolKey;
 
     mapping(PoolId => uint256 count) public beforeSwapCount;
-    mapping(PoolId => uint256 count) public afterSwapCount;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
 
@@ -26,7 +25,8 @@ contract NoOpSwap is BaseHook {
             afterSwap: false,
             beforeDonate: false,
             afterDonate: false,
-            noOp: true // -- ENABLE NO-OP --  //
+            noOp: true, // -- ENABLE NO-OP --  //
+            accessLock: false
         });
     }
 

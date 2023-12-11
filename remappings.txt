@@ -1,0 +1,10 @@
+@v4-by-example/=src/
+@ensdomains/=forge-lib/v4-core/node_modules/@ensdomains/
+@openzeppelin/=forge-lib/v4-core/lib/openzeppelin-contracts/
+ds-test/=forge-lib/v4-core/lib/forge-std/lib/ds-test/src/
+forge-gas-snapshot/=forge-lib/v4-core/lib/forge-gas-snapshot/src/
+forge-std/=forge-lib/v4-core/lib/forge-std/src/
+hardhat/=forge-lib/v4-core/node_modules/hardhat/
+openzeppelin-contracts/=forge-lib/v4-core/lib/openzeppelin-contracts/contracts/
+solmate/=forge-lib/v4-core/lib/solmate/src/
+v4-core/=forge-lib/v4-core/src/
