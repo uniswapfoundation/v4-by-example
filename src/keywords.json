@@ -21,6 +21,14 @@
     "swap",
     "skip swap"
   ],
+  "/hooks/custom-curve": [
+    "hook",
+    "hooks",
+    "noop",
+    "no-op",
+    "custom curve",
+    "custom accounting"
+  ],
   "/fees/fixed-hook-fee": [
     "hook",
     "hooks",

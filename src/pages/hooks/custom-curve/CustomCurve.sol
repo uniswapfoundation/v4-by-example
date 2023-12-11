@@ -72,7 +72,6 @@ contract CustomCurve is BaseHook {
         returns (bytes4)
     {
         // calculate the amount of tokens, based on a custom curve
-        // NOTE: you'll likely want to use `params.amountSpecified` as the exact input/output amount
         uint256 tokenInAmount = getTokenInAmount(params); // amount of tokens paid by the swapper
         uint256 tokenOutAmount = getTokenOutAmount(params); // amount of tokens sent to the swapper
 
