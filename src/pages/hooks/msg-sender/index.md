@@ -1,23 +1,23 @@
 ---
-title: Access `msg.sender`
+title: Access msg.sender within a Hook
 version: 0.8.20
 description: Access msg.sender within a hook
 keywords: [hook, hooks, msg.sender, msgsender, sender]
 ---
 
-Please note accessing `msg.sender` inside a hook has multiple solutions -- each solution includes different tradeoffs
+Please note there are multiple solutions -- each includes different tradeoffs
 
-## `bytes memory hookData` - provide the caller as arbitrary data to the periphery router
+### Using `hookData`
 
-Callers of periphery contracts (`PoolSwapTest`) should provide the user's address in the `bytes memory hookData` argument
+Callers (EOAs / contracts / multisigs) of periphery contracts (`PoolSwapTest`) can provide the user's address as the `hookData` argument
 
-* Tradeoff: Routing and/or user interfaces will need to be aware of this
+* Tradeoff: Routing, quoters, and user interfaces will need to be aware of this non-standard parameter
 
-## Get Current Lock Caller - save the initial lock caller by using the `PoolManager` to invoke a periphery router
+### Get Lock Caller
 
-Callers of `poolManager.lock` will specify their periphery router (`PoolSwapTest`). The calleris saved to the `Lockers` data structure and accessed with `Lockers.getCurrentLockCaller()`
+Callers can use the `PoolManager` to invoke a periphery router. The lock caller is saved in transient storage and can be accessed within a hook
 
-* Tradeoff: the transaction entrypoint is `poolManager.lock` and not `PoolSwapTest.swap` (nonconventional UX)
+* Tradeoff: the transaction entrypoint is `poolManager.lock` and not `PoolSwapTest.swap`, leading to unconventional UX
 
 ---
 
@@ -25,16 +25,23 @@ Callers of `poolManager.lock` will specify their periphery router (`PoolSwapTest
 
 Provide the user's address to the `PoolSwapTest`
 ```solidity
-IPoolManager.SwapParams memory params;
-
-PoolSwapTest.TestSettings memory testSettings;
-
-bytes memory hookData = abi.encode(address(USER_ADDRESS));
-swapRouter.swap(key, params, testSettings, hookData);
+{{{PoolSwapTestHookData}}}
 ```
 
+Decode the `hookData` into an `address` type
 ```solidity
 {{{MsgSenderHookData}}}
 ```
 
-## Get Current Lock Target
+## Get Lock Caller
+
+Invoke `poolManager.lock` with the user, and specify the `PoolSwapTest` router
+```solidity
+{{{PoolManagerLock}}}
+```
+
+Access the Lock Caller via `poolManager.getLock()`
+
+```solidity
+{{{GetCurrentLockCaller}}}
+```

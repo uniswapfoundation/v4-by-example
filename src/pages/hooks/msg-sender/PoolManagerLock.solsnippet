@@ -1,0 +1,6 @@
+// User directly locks on the PoolManager
+vm.prank(alice);
+manager.lock(
+    address(swapRouter),
+    abi.encode(PoolSwapTest.CallbackData(address(this), testSettings, key, params, hookData))
+);

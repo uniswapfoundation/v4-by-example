@@ -8,13 +8,10 @@ import {console2} from "forge-std/console2.sol";
 import {Hooks} from "v4-core/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {Lockers} from "v4-core/libraries/Lockers.sol";
 
 contract GetCurrentLockCaller is BaseHook {
-    using PoolIdLibrary for PoolKey;
-
     mapping(address user => bool allowed) public allowedUsers;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
