@@ -29,11 +29,13 @@
   ],
   "hook": [
     "/hooks/no-op",
+    "/hooks/msg-sender",
     "/hooks/custom-curve",
     "/fees/fixed-hook-fee"
   ],
   "hooks": [
     "/hooks/no-op",
+    "/hooks/msg-sender",
     "/hooks/custom-curve",
     "/fees/fixed-hook-fee"
   ],
@@ -50,6 +52,15 @@
   ],
   "skip swap": [
     "/hooks/no-op"
+  ],
+  "msg.sender": [
+    "/hooks/msg-sender"
+  ],
+  "msgsender": [
+    "/hooks/msg-sender"
+  ],
+  "sender": [
+    "/hooks/msg-sender"
   ],
   "custom curve": [
     "/hooks/custom-curve"

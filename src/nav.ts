@@ -33,6 +33,10 @@ export const HOOK_ROUTES: Route[] = [
   {
     path: "custom-curve",
     title: "Custom Curve"
+  },
+  {
+    path: "msg-sender",
+    title: "Access msg.sender"
   }
 ]
 
