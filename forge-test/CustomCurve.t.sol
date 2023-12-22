@@ -29,7 +29,7 @@ contract CustomCurveTest is HookTest {
 
         // Deploy the hook to an address with the correct flags
         uint160 flags = uint160(
-            Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_MODIFY_POSITION_FLAG | Hooks.NO_OP_FLAG | Hooks.ACCESS_LOCK_FLAG
+            Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG | Hooks.NO_OP_FLAG | Hooks.ACCESS_LOCK_FLAG
         );
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(CustomCurve).creationCode, abi.encode(address(manager)));
@@ -46,8 +46,8 @@ contract CustomCurveTest is HookTest {
         initializeRouter.initialize(hookless, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // add liquidity so theres tokens to take
-        modifyPositionRouter.modifyPosition(
-            hookless, IPoolManager.ModifyPositionParams(-60, 60, 10000 ether), ZERO_BYTES
+        modifyPositionRouter.modifyLiquidity(
+            hookless, IPoolManager.ModifyLiquidityParams(-60, 60, 10000 ether), ZERO_BYTES
         );
 
         // Provide liquidity to the pool

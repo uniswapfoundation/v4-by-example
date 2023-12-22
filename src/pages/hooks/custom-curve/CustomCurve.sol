@@ -22,8 +22,10 @@ contract CustomCurve is BaseHook {
         return Hooks.Permissions({
             beforeInitialize: false,
             afterInitialize: false,
-            beforeModifyPosition: true, // -- disable v4 liquidity with a revert -- //
-            afterModifyPosition: false,
+            beforeAddLiquidity: true, // -- disable v4 liquidity with a revert -- //
+            beforeRemoveLiquidity: false,
+            afterAddLiquidity: false,
+            afterRemoveLiquidity: false,
             beforeSwap: true, // -- No-op'ing the swap --  //
             afterSwap: false,
             beforeDonate: false,
@@ -91,10 +93,10 @@ contract CustomCurve is BaseHook {
     }
 
     /// @notice No liquidity will be managed by v4 PoolManager
-    function beforeModifyPosition(
+    function beforeAddLiquidity(
         address,
         PoolKey calldata key,
-        IPoolManager.ModifyPositionParams calldata,
+        IPoolManager.ModifyLiquidityParams calldata,
         bytes calldata
     ) external override returns (bytes4) {
         revert("No v4 Liquidity allowed");

@@ -1,6 +1,6 @@
-import {PoolModifyPositionTest} from "v4-core/test/PoolModifyPositionTest.sol";
+import {PoolModifyLiquidityTest} from "v4-core/test/PoolModifyLiquidityTest.sol";
 
-PoolModifyPositionTest lpRouter = PoolModifyPositionTest(0x01);
+PoolModifyLiquidityTest lpRouter = PoolModifyLiquidityTest(0x01);
 address token0 = address(0x11);
 address token1 = address(0x22);
 address hookAddress = address(0x80);
@@ -22,8 +22,8 @@ IERC20(token1).approve(address(lpRouter), type(uint256).max);
 int24 tickLower = -600;
 int24 tickUpper = 600;
 int256 liquidity = 10e18;
-lpRouter.modifyPosition(
+lpRouter.modifyLiquidity(
     poolKey,
-    IPoolManager.ModifyPositionParams({tickLower: tickLower, tickUpper: tickUpper, liquidityDelta: liquidity}),
+    IPoolManager.ModifyLiquidityParams({tickLower: tickLower, tickUpper: tickUpper, liquidityDelta: liquidity}),
     new bytes(0)
 );
