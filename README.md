@@ -1,8 +1,40 @@
-# v4-by-example
+# [v4-by-example](https://v4-by-example.org)
+
+Solidity snippets for all things Uniswap v4
+
+*largely inspired by [solidity-by-example](https://solidity-by-example.org)*
+
+---
 
 ### License
 
 [MIT License](LICENSE)
+
+---
+
+# Contributing Guide
+
+The project is welcoming all contributions. Please limit PRs to:
+
+1. Minimal examples showcasing v4 features
+2. Syncing existing snippets with the latest v4 changes
+
+## Setup
+
+Requires [node 18](https://nodejs.org/en/download)
+
+```bash
+git clone git@github.com:uniswapfoundation/v4-by-example.git
+
+npm i
+npm start
+```
+
+## Creating a new page
+
+```
+npm i
+```
 
 ### Development
 
