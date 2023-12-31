@@ -33,14 +33,26 @@ npm start
 ## Creating a new page
 
 ```
-npm i
+cp -r src/pages/template src/pages/<path>/<name>
 ```
 
-### Development
+Edit the following files
+* `src/pages/<path>/<name>/index.md`
+* `src/pages/<path>/<name>/Template.sol`
 
-```shell
-npm i
-npm start
+> Please write foundry tests in `forge-test/` for your `.sol` files!
+
+Register the page on [nav.ts](src/nav.ts)
+```typescript
+{
+  path: "<name>",
+  title: "TITLE"
+}
+```
+
+Generate react, register routes, and rebuild search index
+```bash
+npm run generate
 ```
 
 ### Production
