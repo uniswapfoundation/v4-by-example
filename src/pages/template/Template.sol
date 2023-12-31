@@ -1,17 +1,28 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
+// TODO: update to v4-periphery/BaseHook.sol when its compatible
 import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
 import {Hooks} from "v4-core/libraries/Hooks.sol";
 import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/types/PoolKey.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
+import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 
-contract NoOpSwap is BaseHook {
+contract Counter is BaseHook {
     using PoolIdLibrary for PoolKey;
 
+    // NOTE: ---------------------------------------------------------
+    // state variables should typically be unique to a pool
+    // a single hook contract should be able to service multiple pools
+    // ---------------------------------------------------------------
+
     mapping(PoolId => uint256 count) public beforeSwapCount;
+    mapping(PoolId => uint256 count) public afterSwapCount;
+
+    mapping(PoolId => uint256 count) public beforeModifyPositionCount;
+    mapping(PoolId => uint256 count) public afterModifyPositionCount;
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
 
@@ -19,28 +30,57 @@ contract NoOpSwap is BaseHook {
         return Hooks.Permissions({
             beforeInitialize: false,
             afterInitialize: false,
-            beforeModifyPosition: false,
-            afterModifyPosition: false,
-            beforeSwap: true, // -- No-op'ing the swap --  //
-            afterSwap: false,
+            beforeModifyPosition: true,
+            afterModifyPosition: true,
+            beforeSwap: true,
+            afterSwap: true,
             beforeDonate: false,
             afterDonate: false,
-            noOp: true, // -- ENABLE NO-OP --  //
+            noOp: false,
             accessLock: false
         });
     }
 
-    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata params, bytes calldata)
+    // -----------------------------------------------
+    // NOTE: see IHooks.sol for function documentation
+    // -----------------------------------------------
+
+    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata)
         external
         override
         returns (bytes4)
     {
-        // ------------------------------------------------------------------------------- //
-        // Example NoOp: if swap amount is 69e18, then the swap will be skipped            //
-        // ------------------------------------------------------------------------------- //
-        if (params.amountSpecified == 69e18) return Hooks.NO_OP_SELECTOR;
-
         beforeSwapCount[key.toId()]++;
         return BaseHook.beforeSwap.selector;
+    }
+
+    function afterSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, BalanceDelta, bytes calldata)
+        external
+        override
+        returns (bytes4)
+    {
+        afterSwapCount[key.toId()]++;
+        return BaseHook.afterSwap.selector;
+    }
+
+    function beforeModifyPosition(
+        address,
+        PoolKey calldata key,
+        IPoolManager.ModifyPositionParams calldata,
+        bytes calldata
+    ) external override returns (bytes4) {
+        beforeModifyPositionCount[key.toId()]++;
+        return BaseHook.beforeModifyPosition.selector;
+    }
+
+    function afterModifyPosition(
+        address,
+        PoolKey calldata key,
+        IPoolManager.ModifyPositionParams calldata,
+        BalanceDelta,
+        bytes calldata
+    ) external override returns (bytes4) {
+        afterModifyPositionCount[key.toId()]++;
+        return BaseHook.afterModifyPosition.selector;
     }
 }
