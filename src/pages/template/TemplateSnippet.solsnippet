@@ -4,8 +4,10 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
     return Hooks.Permissions({
         beforeInitialize: false,
         afterInitialize: false,
-        beforeModifyPosition: true,
-        afterModifyPosition: true,
+        beforeAddLiquidity: true,
+        afterAddLiquidity: false,
+        beforeRemoveLiquidity: true,
+        afterRemoveLiquidity: false,
         beforeSwap: true,
         afterSwap: true,
         beforeDonate: false,
