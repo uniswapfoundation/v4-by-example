@@ -66,7 +66,7 @@ contract Counter is BaseHook {
     function beforeModifyPosition(
         address,
         PoolKey calldata key,
-        IPoolManager.ModifyPositionParams calldata,
+        IPoolManager.ModifyLiquidityParams calldata,
         bytes calldata
     ) external override returns (bytes4) {
         beforeModifyPositionCount[key.toId()]++;
@@ -76,7 +76,7 @@ contract Counter is BaseHook {
     function afterModifyPosition(
         address,
         PoolKey calldata key,
-        IPoolManager.ModifyPositionParams calldata,
+        IPoolManager.ModifyLiquidityParams calldata,
         BalanceDelta,
         bytes calldata
     ) external override returns (bytes4) {
