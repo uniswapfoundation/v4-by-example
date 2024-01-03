@@ -14,7 +14,7 @@ interface Route {
 
 // build import path relative to src
 function buildImportPath(folders: string[]) {
-  const importPath = ["."]
+  let importPath = ["."]
 
   const start = folders.findIndex((file) => file === "src")
   assert(start > 0, `Cannot find pages folder`)
@@ -30,6 +30,7 @@ function buildImportPath(folders: string[]) {
     importPath.push(file)
   }
 
+  importPath = [importPath[0], ...importPath.slice(3, importPath.length)];
   return importPath.join("/")
 }
 

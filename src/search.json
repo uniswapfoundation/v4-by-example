@@ -1,4 +1,10 @@
 {
+  "template": [
+    "/template"
+  ],
+  "example": [
+    "/template"
+  ],
   "swap": [
     "/swap",
     "/hooks/no-op"

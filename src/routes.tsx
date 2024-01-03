@@ -4,6 +4,7 @@ import component_hooks_custom_curve from "./pages/hooks/custom-curve"
 import component_hooks_no_op from "./pages/hooks/no-op"
 import component_initialize from "./pages/initialize"
 import component_swap from "./pages/swap"
+import component_template from "./pages/template"
 import component_ from "./pages"
 
 interface Path {
@@ -46,6 +47,10 @@ const routes: Route[] = [
     {
         path: "/swap",
         component: component_swap
+    },
+    {
+        path: "/template",
+        component: component_template
     },
     {
         path: "",
