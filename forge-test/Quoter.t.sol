@@ -12,15 +12,13 @@ import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {HookTest} from "./utils/HookTest.sol";
-import {Counter} from "./Counter.sol";
-import {HookMiner} from "./utils/HookMiner.sol";
+import {IQuoter} from "v4-periphery/interfaces/IQuoter.sol";
 import {Quoter} from "v4-periphery/lens/Quoter.sol";
 
 contract QuoterTest is HookTest {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
-    Counter counter;
     PoolKey poolKey;
     PoolId poolId;
     Quoter quoter;
@@ -28,52 +26,38 @@ contract QuoterTest is HookTest {
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
         HookTest.initHookTestEnv();
-        quoter = new Quoter(manager);
-
-        // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(
-            Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
-                | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
-        );
-        (address hookAddress, bytes32 salt) =
-            HookMiner.find(address(this), flags, type(Counter).creationCode, abi.encode(address(manager)));
-        counter = new Counter{salt: salt}(IPoolManager(address(manager)));
-        require(address(counter) == hookAddress, "CounterTest: hook address mismatch");
+        quoter = new Quoter(address(manager));
 
         // Create the pool
-        poolKey = PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(counter));
+        poolKey =
+            PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(address(0x0)));
         poolId = poolKey.toId();
         initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyLiquidity(
-            poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
-        );
         modifyPositionRouter.modifyLiquidity(
             poolKey,
-            IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10 ether),
+            IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 1000 ether),
             ZERO_BYTES
         );
     }
 
-    function testCounterHooks() public {
-        // positions were created in setup()
-        assertEq(counter.beforeAddLiquidityCount(poolId), 3);
-        assertEq(counter.beforeRemoveLiquidityCount(poolId), 0);
+    function testQuoter() public {
+        uint128 amountIn = 1e18;
+        bool zeroForOne = true;
 
-        assertEq(counter.beforeSwapCount(poolId), 0);
-        assertEq(counter.afterSwapCount(poolId), 0);
+        // maximum slippage
+        uint160 sqrtPriceLimitX96 = zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT;
+
+        PoolKey memory key = poolKey;
+        (int128[] memory deltaAmounts, uint160 sqrtPriceX96After,) = quoter.quoteExactInputSingle(
+            IQuoter.QuoteExactSingleParams(key, zeroForOne, address(this), amountIn, sqrtPriceLimitX96, ZERO_BYTES)
+        );
+
+        console2.log(deltaAmounts[1]);
 
         // Perform a test swap //
-        int256 amount = 100;
-        bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, int256(uint256(amountIn)), zeroForOne, ZERO_BYTES);
         // ------------------- //
-
-        assertEq(int256(swapDelta.amount0()), amount);
-
-        assertEq(counter.beforeSwapCount(poolId), 1);
-        assertEq(counter.afterSwapCount(poolId), 1);
     }
 }
