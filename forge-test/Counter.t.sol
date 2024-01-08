@@ -30,10 +30,8 @@ contract CounterTest is HookTest, GasSnapshot {
         HookTest.initHookTestEnv();
 
         // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(
-            Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
-                | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
-        );
+        uint160 flags =
+            uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG);
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(Counter).creationCode, abi.encode(address(manager)));
         counter = new Counter{salt: salt}(IPoolManager(address(manager)));
