@@ -1,92 +1,146 @@
 // metadata
 export const version = "0.8.20"
-export const title = "TEMPLATE"
-export const description = "TEMPLATE"
+export const title = "Quoter"
+export const description = "Offchain Quoter, to fetch input/output amounts"
 
 export const keywords = [
-    "template",
-    "example",
+    "quoter",
+    "quoting",
+    "exact input",
+    "exact output",
+    "single",
+    "multi",
+    "multihop",
 ]
 
 export const codes = [
     {
-        fileName: "Template.sol",
-        code: "Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVApwcmFnbWEgc29saWRpdHkgXjAuOC4yMDsKCmltcG9ydCB7QmFzZUhvb2t9IGZyb20gIkB2NC1ieS1leGFtcGxlL3V0aWxzL0Jhc2VIb29rLnNvbCI7CgppbXBvcnQge0hvb2tzfSBmcm9tICJ2NC1jb3JlL2xpYnJhcmllcy9Ib29rcy5zb2wiOwppbXBvcnQge0lQb29sTWFuYWdlcn0gZnJvbSAidjQtY29yZS9pbnRlcmZhY2VzL0lQb29sTWFuYWdlci5zb2wiOwppbXBvcnQge1Bvb2xLZXl9IGZyb20gInY0LWNvcmUvdHlwZXMvUG9vbEtleS5zb2wiOwppbXBvcnQge1Bvb2xJZCwgUG9vbElkTGlicmFyeX0gZnJvbSAidjQtY29yZS90eXBlcy9Qb29sSWQuc29sIjsKCmNvbnRyYWN0IE5vT3BTd2FwIGlzIEJhc2VIb29rIHsKICAgIHVzaW5nIFBvb2xJZExpYnJhcnkgZm9yIFBvb2xLZXk7CgogICAgbWFwcGluZyhQb29sSWQgPT4gdWludDI1NiBjb3VudCkgcHVibGljIGJlZm9yZVN3YXBDb3VudDsKCiAgICBjb25zdHJ1Y3RvcihJUG9vbE1hbmFnZXIgX3Bvb2xNYW5hZ2VyKSBCYXNlSG9vayhfcG9vbE1hbmFnZXIpIHt9CgogICAgZnVuY3Rpb24gZ2V0SG9va1Blcm1pc3Npb25zKCkgcHVibGljIHB1cmUgb3ZlcnJpZGUgcmV0dXJucyAoSG9va3MuUGVybWlzc2lvbnMgbWVtb3J5KSB7CiAgICAgICAgcmV0dXJuIEhvb2tzLlBlcm1pc3Npb25zKHsKICAgICAgICAgICAgYmVmb3JlSW5pdGlhbGl6ZTogZmFsc2UsCiAgICAgICAgICAgIGFmdGVySW5pdGlhbGl6ZTogZmFsc2UsCiAgICAgICAgICAgIGJlZm9yZU1vZGlmeVBvc2l0aW9uOiBmYWxzZSwKICAgICAgICAgICAgYWZ0ZXJNb2RpZnlQb3NpdGlvbjogZmFsc2UsCiAgICAgICAgICAgIGJlZm9yZVN3YXA6IHRydWUsIC8vIC0tIE5vLW9wJ2luZyB0aGUgc3dhcCAtLSAgLy8KICAgICAgICAgICAgYWZ0ZXJTd2FwOiBmYWxzZSwKICAgICAgICAgICAgYmVmb3JlRG9uYXRlOiBmYWxzZSwKICAgICAgICAgICAgYWZ0ZXJEb25hdGU6IGZhbHNlLAogICAgICAgICAgICBub09wOiB0cnVlLCAvLyAtLSBFTkFCTEUgTk8tT1AgLS0gIC8vCiAgICAgICAgICAgIGFjY2Vzc0xvY2s6IGZhbHNlCiAgICAgICAgfSk7CiAgICB9CgogICAgZnVuY3Rpb24gYmVmb3JlU3dhcChhZGRyZXNzLCBQb29sS2V5IGNhbGxkYXRhIGtleSwgSVBvb2xNYW5hZ2VyLlN3YXBQYXJhbXMgY2FsbGRhdGEgcGFyYW1zLCBieXRlcyBjYWxsZGF0YSkKICAgICAgICBleHRlcm5hbAogICAgICAgIG92ZXJyaWRlCiAgICAgICAgcmV0dXJucyAoYnl0ZXM0KQogICAgewogICAgICAgIC8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gLy8KICAgICAgICAvLyBFeGFtcGxlIE5vT3A6IGlmIHN3YXAgYW1vdW50IGlzIDY5ZTE4LCB0aGVuIHRoZSBzd2FwIHdpbGwgYmUgc2tpcHBlZCAgICAgICAgICAgIC8vCiAgICAgICAgLy8gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSAvLwogICAgICAgIGlmIChwYXJhbXMuYW1vdW50U3BlY2lmaWVkID09IDY5ZTE4KSByZXR1cm4gSG9va3MuTk9fT1BfU0VMRUNUT1I7CgogICAgICAgIGJlZm9yZVN3YXBDb3VudFtrZXkudG9JZCgpXSsrOwogICAgICAgIHJldHVybiBCYXNlSG9vay5iZWZvcmVTd2FwLnNlbGVjdG9yOwogICAgfQp9Cg==",
+        fileName: "Quoter.sol",
+        code: "Ly8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IE1JVApwcmFnbWEgc29saWRpdHkgXjAuOC4xOTsKCmltcG9ydCAiZm9yZ2Utc3RkL1Rlc3Quc29sIjsKaW1wb3J0IHtJSG9va3N9IGZyb20gInY0LWNvcmUvaW50ZXJmYWNlcy9JSG9va3Muc29sIjsKaW1wb3J0IHtIb29rc30gZnJvbSAidjQtY29yZS9saWJyYXJpZXMvSG9va3Muc29sIjsKaW1wb3J0IHtUaWNrTWF0aH0gZnJvbSAidjQtY29yZS9saWJyYXJpZXMvVGlja01hdGguc29sIjsKaW1wb3J0IHtJUG9vbE1hbmFnZXJ9IGZyb20gInY0LWNvcmUvaW50ZXJmYWNlcy9JUG9vbE1hbmFnZXIuc29sIjsKaW1wb3J0IHtQb29sS2V5fSBmcm9tICJ2NC1jb3JlL3R5cGVzL1Bvb2xLZXkuc29sIjsKaW1wb3J0IHtCYWxhbmNlRGVsdGF9IGZyb20gInY0LWNvcmUvdHlwZXMvQmFsYW5jZURlbHRhLnNvbCI7CmltcG9ydCB7UG9vbElkLCBQb29sSWRMaWJyYXJ5fSBmcm9tICJ2NC1jb3JlL3R5cGVzL1Bvb2xJZC5zb2wiOwppbXBvcnQge0NvbnN0YW50c30gZnJvbSAidjQtY29yZS8uLi90ZXN0L3V0aWxzL0NvbnN0YW50cy5zb2wiOwppbXBvcnQge0N1cnJlbmN5TGlicmFyeSwgQ3VycmVuY3l9IGZyb20gInY0LWNvcmUvdHlwZXMvQ3VycmVuY3kuc29sIjsKaW1wb3J0IHtIb29rVGVzdH0gZnJvbSAiQHY0LWJ5LWV4YW1wbGUvdXRpbHMvSG9va1Rlc3Quc29sIjsKaW1wb3J0IHtJUXVvdGVyfSBmcm9tICJ2NC1wZXJpcGhlcnkvaW50ZXJmYWNlcy9JUXVvdGVyLnNvbCI7CmltcG9ydCB7UXVvdGVyfSBmcm9tICJ2NC1wZXJpcGhlcnkvbGVucy9RdW90ZXIuc29sIjsKCmNvbnRyYWN0IFF1b3RlclRlc3QgaXMgSG9va1Rlc3QgewogICAgdXNpbmcgUG9vbElkTGlicmFyeSBmb3IgUG9vbEtleTsKICAgIHVzaW5nIEN1cnJlbmN5TGlicmFyeSBmb3IgQ3VycmVuY3k7CgogICAgUG9vbEtleSBwb29sS2V5OwogICAgUG9vbElkIHBvb2xJZDsKICAgIFF1b3RlciBxdW90ZXI7CgogICAgZnVuY3Rpb24gc2V0VXAoKSBwdWJsaWMgewogICAgICAgIC8vIGNyZWF0ZXMgdGhlIHBvb2wgbWFuYWdlciwgdGVzdCB0b2tlbnMsIGFuZCBvdGhlciB1dGlsaXR5IHJvdXRlcnMKICAgICAgICBIb29rVGVzdC5pbml0SG9va1Rlc3RFbnYoKTsKICAgICAgICBxdW90ZXIgPSBuZXcgUXVvdGVyKGFkZHJlc3MobWFuYWdlcikpOwoKICAgICAgICAvLyBDcmVhdGUgdGhlIHBvb2wKICAgICAgICBwb29sS2V5ID0KICAgICAgICAgICAgUG9vbEtleShDdXJyZW5jeS53cmFwKGFkZHJlc3ModG9rZW4wKSksIEN1cnJlbmN5LndyYXAoYWRkcmVzcyh0b2tlbjEpKSwgMzAwMCwgNjAsIElIb29rcyhhZGRyZXNzKDB4MCkpKTsKICAgICAgICBwb29sSWQgPSBwb29sS2V5LnRvSWQoKTsKICAgICAgICBpbml0aWFsaXplUm91dGVyLmluaXRpYWxpemUocG9vbEtleSwgQ29uc3RhbnRzLlNRUlRfUkFUSU9fMV8xLCBaRVJPX0JZVEVTKTsKCiAgICAgICAgLy8gUHJvdmlkZSBsaXF1aWRpdHkgdG8gdGhlIHBvb2wKICAgICAgICBtb2RpZnlQb3NpdGlvblJvdXRlci5tb2RpZnlMaXF1aWRpdHkoCiAgICAgICAgICAgIHBvb2xLZXksCiAgICAgICAgICAgIElQb29sTWFuYWdlci5Nb2RpZnlMaXF1aWRpdHlQYXJhbXMoVGlja01hdGgubWluVXNhYmxlVGljayg2MCksIFRpY2tNYXRoLm1heFVzYWJsZVRpY2soNjApLCAxMDAwIGV0aGVyKSwKICAgICAgICAgICAgWkVST19CWVRFUwogICAgICAgICk7CiAgICB9CgogICAgZnVuY3Rpb24gdGVzdFF1b3Rlcl9vdXRwdXQoKSBwdWJsaWMgewogICAgICAgIHVpbnQxMjggYW1vdW50SW4gPSAxZTE4OwogICAgICAgIGJvb2wgemVyb0Zvck9uZSA9IHRydWU7CiAgICAgICAgdWludDE2MCBNQVhfU0xJUFBBR0UgPSB6ZXJvRm9yT25lID8gTUlOX1BSSUNFX0xJTUlUIDogTUFYX1BSSUNFX0xJTUlUOwoKICAgICAgICAvLyBnZXQgdGhlIHF1b3RlCiAgICAgICAgUG9vbEtleSBtZW1vcnkga2V5ID0gcG9vbEtleTsKICAgICAgICAoaW50MTI4W10gbWVtb3J5IGRlbHRhQW1vdW50cywgdWludDE2MCBzcXJ0UHJpY2VYOTZBZnRlciwpID0gcXVvdGVyLnF1b3RlRXhhY3RJbnB1dFNpbmdsZSgKICAgICAgICAgICAgSVF1b3Rlci5RdW90ZUV4YWN0U2luZ2xlUGFyYW1zKGtleSwgemVyb0Zvck9uZSwgYWRkcmVzcyh0aGlzKSwgYW1vdW50SW4sIE1BWF9TTElQUEFHRSwgWkVST19CWVRFUykKICAgICAgICApOwoKICAgICAgICAvLyBvdXRwdXQgaXMgYW1vdW50IDEKICAgICAgICBpbnQxMjggb3V0cHV0QW1vdW50ID0gZGVsdGFBbW91bnRzWzFdOwogICAgICAgIGNvbnNvbGUyLmxvZygiUXVvdGVkIG91dHB1dCBhbW91bnQ6ICIsIGludDI1NihvdXRwdXRBbW91bnQpKTsKCiAgICAgICAgLy8gUGVyZm9ybSBhIHRlc3Qgc3dhcAogICAgICAgIEJhbGFuY2VEZWx0YSBzd2FwRGVsdGEgPSBzd2FwKHBvb2xLZXksIGludDI1Nih1aW50MjU2KGFtb3VudEluKSksIHplcm9Gb3JPbmUsIFpFUk9fQllURVMpOwoKICAgICAgICAvLyBxdW90ZSBhZ3JlZXMgd2l0aCB0aGUgYWN0dWFsIHN3YXAKICAgICAgICBhc3NlcnRFcShvdXRwdXRBbW91bnQsIHN3YXBEZWx0YS5hbW91bnQxKCkpOwogICAgfQoKICAgIGZ1bmN0aW9uIHRlc3RRdW90ZXJfaW5wdXQoKSBwdWJsaWMgewogICAgICAgIHVpbnQxMjggYW1vdW50T3V0ID0gMWUxODsKICAgICAgICBib29sIHplcm9Gb3JPbmUgPSB0cnVlOwogICAgICAgIHVpbnQxNjAgTUFYX1NMSVBQQUdFID0gemVyb0Zvck9uZSA/IE1JTl9QUklDRV9MSU1JVCA6IE1BWF9QUklDRV9MSU1JVDsKCiAgICAgICAgLy8gZ2V0IHRoZSBxdW90ZQogICAgICAgIFBvb2xLZXkgbWVtb3J5IGtleSA9IHBvb2xLZXk7CiAgICAgICAgKGludDEyOFtdIG1lbW9yeSBkZWx0YUFtb3VudHMsIHVpbnQxNjAgc3FydFByaWNlWDk2QWZ0ZXIsKSA9IHF1b3Rlci5xdW90ZUV4YWN0T3V0cHV0U2luZ2xlKAogICAgICAgICAgICBJUXVvdGVyLlF1b3RlRXhhY3RTaW5nbGVQYXJhbXMoa2V5LCB6ZXJvRm9yT25lLCBhZGRyZXNzKHRoaXMpLCBhbW91bnRPdXQsIE1BWF9TTElQUEFHRSwgWkVST19CWVRFUykKICAgICAgICApOwoKICAgICAgICAvLyBpbnB1dCAocXVvdGVkKSBpcyBhbW91bnQgMAogICAgICAgIGludDEyOCBpbnB1dEFtb3VudCA9IGRlbHRhQW1vdW50c1swXTsKICAgICAgICBjb25zb2xlMi5sb2coIlF1b3RlZCBpbnB1dCBhbW91bnQ6ICIsIGludDI1NihpbnB1dEFtb3VudCkpOwoKICAgICAgICAvLyBQZXJmb3JtIGEgZXhhY3Qtb3V0cHV0IHN3YXAKICAgICAgICBCYWxhbmNlRGVsdGEgc3dhcERlbHRhID0gc3dhcChwb29sS2V5LCAtaW50MjU2KHVpbnQyNTYoYW1vdW50T3V0KSksIHplcm9Gb3JPbmUsIFpFUk9fQllURVMpOwogICAgICAgIGFzc2VydEVxKGlucHV0QW1vdW50LCBzd2FwRGVsdGEuYW1vdW50MCgpKTsKICAgICAgICAodWludDE2MCBzcXJ0UHJpY2VYOTYsLCkgPSBtYW5hZ2VyLmdldFNsb3QwKHBvb2xJZCk7CiAgICAgICAgYXNzZXJ0RXEoc3FydFByaWNlWDk2QWZ0ZXIsIHNxcnRQcmljZVg5Nik7CiAgICB9Cn0K",
     },
     {
-        fileName: "TemplateSnippet.sol",
-        code: "aW1wb3J0IHtIb29rc30gZnJvbSAidjQtY29yZS9saWJyYXJpZXMvSG9va3Muc29sIjsKCmZ1bmN0aW9uIGdldEhvb2tzQ2FsbHMoKSBwdWJsaWMgcHVyZSBvdmVycmlkZSByZXR1cm5zIChIb29rcy5DYWxscyBtZW1vcnkpIHsKICAgIHJldHVybiBIb29rcy5DYWxscyh7CiAgICAgICAgYmVmb3JlSW5pdGlhbGl6ZTogZmFsc2UsCiAgICAgICAgYWZ0ZXJJbml0aWFsaXplOiBmYWxzZSwKICAgICAgICBiZWZvcmVNb2RpZnlQb3NpdGlvbjogZmFsc2UsCiAgICAgICAgYWZ0ZXJNb2RpZnlQb3NpdGlvbjogZmFsc2UsCiAgICAgICAgYmVmb3JlU3dhcDogdHJ1ZSwKICAgICAgICBhZnRlclN3YXA6IGZhbHNlLAogICAgICAgIGJlZm9yZURvbmF0ZTogZmFsc2UsCiAgICAgICAgYWZ0ZXJEb25hdGU6IGZhbHNlLAogICAgICAgIG5vT3A6IHRydWUgLy8gLS0gRU5BQkxFIE5PLU9QIC0tICAvLwogICAgfSk7Cn0=",
+        fileName: "QuoterSnippet.sol",
+        code: "aW1wb3J0IHtJUXVvdGVyfSBmcm9tICJ2NC1wZXJpcGhlcnkvaW50ZXJmYWNlcy9JUXVvdGVyLnNvbCI7CgpQb29sS2V5IG1lbW9yeSBrZXk7CnVpbnQxMjggYW1vdW50SW4gPSAxZTE4Owpib29sIHplcm9Gb3JPbmUgPSB0cnVlOwp1aW50MTYwIE1BWF9TTElQUEFHRSA9IHplcm9Gb3JPbmUgPyBNSU5fUFJJQ0VfTElNSVQgOiBNQVhfUFJJQ0VfTElNSVQ7CmJ5dGVzIG1lbW9yeSBob29rRGF0YTsKCi8vIGV4YWN0IGlucHV0IHdpbGwgcXVvdGUgZGVsdGFBbW91bnRzWzFdIChvdXRwdXQpCi8vIGV4YWN0IG91dHB1dCB3aWxsIHF1b3RlIGRlbHRhQW1vdW50c1swXSAoaW5wdXQpCihpbnQxMjhbXSBtZW1vcnkgZGVsdGFBbW91bnRzLCB1aW50MTYwIHNxcnRQcmljZVg5NkFmdGVyLCkgPSBxdW90ZXIucXVvdGVFeGFjdElucHV0U2luZ2xlKAogICAgSVF1b3Rlci5RdW90ZUV4YWN0U2luZ2xlUGFyYW1zKGtleSwgemVyb0Zvck9uZSwgYWRkcmVzcyh0aGlzKSwgYW1vdW50SW4sIE1BWF9TTElQUEFHRSwgaG9va0RhdGEpCik7Cg==",
     },
 ]
 
 const html = `<ul>
-<li>SUBTITLE</li>
+<li><p>Quoting swaps -- for <strong>offchain purposes</strong></p>
+</li>
+<li><p>Quoter performs a swap and reverts, this very <em>expensive</em> and should not be used onchain</p>
+</li>
 </ul>
-<p>TEMPLATE INFO</p>
+<p>The <code>Quoter</code> contract provides helper functions for quoting different types of swaps:</p>
+<pre><code>|             | Exact Input           | Exact Output           |
+|-------------|-----------------------|------------------------|
+| Single Pool | quoteExactInputSingle | quoteExactOutputSingle |
+| Multi-hop   | quoteExactInput       | quoteExactOutput       |
+</code></pre><p><code>Exact Input</code>: Given the <code>input</code> amount, how many <em>output</em> tokens can I expect</p>
+<p><code>Exact Output</code>: Given the desired <code>output</code> amount, how many <em>input</em> tokens should I provide</p>
 <hr>
-<h2>Example TEMPLATE</h2>
-<p>TEMPLATE</p>
+<h2>Quoter snippet</h2>
+<pre><code class="language-solidity"><span class="hljs-keyword">import</span> {<span class="hljs-title">IQuoter</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-periphery/interfaces/IQuoter.sol"</span>;
+
+PoolKey <span class="hljs-keyword">memory</span> key;
+<span class="hljs-keyword">uint128</span> amountIn <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
+<span class="hljs-keyword">bool</span> zeroForOne <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">uint160</span> MAX_SLIPPAGE <span class="hljs-operator">=</span> zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT;
+<span class="hljs-keyword">bytes</span> <span class="hljs-keyword">memory</span> hookData;
+
+<span class="hljs-comment">// exact input will quote deltaAmounts[1] (output)</span>
+<span class="hljs-comment">// exact output will quote deltaAmounts[0] (input)</span>
+(<span class="hljs-keyword">int128</span>[] <span class="hljs-keyword">memory</span> deltaAmounts, <span class="hljs-keyword">uint160</span> sqrtPriceX96After,) <span class="hljs-operator">=</span> quoter.quoteExactInputSingle(
+    IQuoter.QuoteExactSingleParams(key, zeroForOne, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), amountIn, MAX_SLIPPAGE, hookData)
+);
+</code></pre><h2>Example: Single Pool</h2>
+<p>Please see <code>testQuoter_output()</code> and <code>testQuoter_input()</code> for example usage and validation</p>
 <pre><code class="language-solidity"><span class="hljs-comment">// SPDX-License-Identifier: MIT</span>
-<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.20;</span>
+<span class="hljs-meta"><span class="hljs-keyword">pragma</span> <span class="hljs-keyword">solidity</span> ^0.8.19;</span>
 
-<span class="hljs-keyword">import</span> {<span class="hljs-title">BaseHook</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@v4-by-example/utils/BaseHook.sol"</span>;
-
+<span class="hljs-keyword">import</span> <span class="hljs-string">"forge-std/Test.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">IHooks</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/interfaces/IHooks.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">Hooks</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/libraries/Hooks.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">TickMath</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/libraries/TickMath.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">IPoolManager</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/interfaces/IPoolManager.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">PoolKey</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/types/PoolKey.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">BalanceDelta</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/types/BalanceDelta.sol"</span>;
 <span class="hljs-keyword">import</span> {<span class="hljs-title">PoolId</span>, <span class="hljs-title">PoolIdLibrary</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/types/PoolId.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">Constants</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/../test/utils/Constants.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">CurrencyLibrary</span>, <span class="hljs-title">Currency</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/types/Currency.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">HookTest</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"@v4-by-example/utils/HookTest.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">IQuoter</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-periphery/interfaces/IQuoter.sol"</span>;
+<span class="hljs-keyword">import</span> {<span class="hljs-title">Quoter</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-periphery/lens/Quoter.sol"</span>;
 
-<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">NoOpSwap</span> <span class="hljs-keyword">is</span> <span class="hljs-title">BaseHook</span> </span>{
+<span class="hljs-class"><span class="hljs-keyword">contract</span> <span class="hljs-title">QuoterTest</span> <span class="hljs-keyword">is</span> <span class="hljs-title">HookTest</span> </span>{
     <span class="hljs-keyword">using</span> <span class="hljs-title">PoolIdLibrary</span> <span class="hljs-title"><span class="hljs-keyword">for</span></span> <span class="hljs-title">PoolKey</span>;
+    <span class="hljs-keyword">using</span> <span class="hljs-title">CurrencyLibrary</span> <span class="hljs-title"><span class="hljs-keyword">for</span></span> <span class="hljs-title">Currency</span>;
 
-    <span class="hljs-keyword">mapping</span>(PoolId <span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">uint256</span> count) <span class="hljs-keyword">public</span> beforeSwapCount;
+    PoolKey poolKey;
+    PoolId poolId;
+    Quoter quoter;
 
-    <span class="hljs-function"><span class="hljs-keyword">constructor</span>(<span class="hljs-params">IPoolManager _poolManager</span>) <span class="hljs-title">BaseHook</span>(<span class="hljs-params">_poolManager</span>) </span>{}
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUp</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-comment">// creates the pool manager, test tokens, and other utility routers</span>
+        HookTest.initHookTestEnv();
+        quoter <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> Quoter(<span class="hljs-keyword">address</span>(manager));
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getHookPermissions</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">override</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params">Hooks.Permissions <span class="hljs-keyword">memory</span></span>) </span>{
-        <span class="hljs-keyword">return</span> Hooks.Permissions({
-            beforeInitialize: <span class="hljs-literal">false</span>,
-            afterInitialize: <span class="hljs-literal">false</span>,
-            beforeModifyPosition: <span class="hljs-literal">false</span>,
-            afterModifyPosition: <span class="hljs-literal">false</span>,
-            beforeSwap: <span class="hljs-literal">true</span>, <span class="hljs-comment">// -- No-op&#x27;ing the swap --  //</span>
-            afterSwap: <span class="hljs-literal">false</span>,
-            beforeDonate: <span class="hljs-literal">false</span>,
-            afterDonate: <span class="hljs-literal">false</span>,
-            noOp: <span class="hljs-literal">true</span>, <span class="hljs-comment">// -- ENABLE NO-OP --  //</span>
-            accessLock: <span class="hljs-literal">false</span>
-        });
+        <span class="hljs-comment">// Create the pool</span>
+        poolKey <span class="hljs-operator">=</span>
+            PoolKey(Currency.<span class="hljs-built_in">wrap</span>(<span class="hljs-keyword">address</span>(token0)), Currency.<span class="hljs-built_in">wrap</span>(<span class="hljs-keyword">address</span>(token1)), <span class="hljs-number">3000</span>, <span class="hljs-number">60</span>, IHooks(<span class="hljs-keyword">address</span>(<span class="hljs-number">0x0</span>)));
+        poolId <span class="hljs-operator">=</span> poolKey.toId();
+        initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+
+        <span class="hljs-comment">// Provide liquidity to the pool</span>
+        modifyPositionRouter.modifyLiquidity(
+            poolKey,
+            IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(<span class="hljs-number">60</span>), TickMath.maxUsableTick(<span class="hljs-number">60</span>), <span class="hljs-number">1000</span> <span class="hljs-literal">ether</span>),
+            ZERO_BYTES
+        );
     }
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beforeSwap</span>(<span class="hljs-params"><span class="hljs-keyword">address</span>, PoolKey <span class="hljs-keyword">calldata</span> key, IPoolManager.SwapParams <span class="hljs-keyword">calldata</span> params, <span class="hljs-keyword">bytes</span> <span class="hljs-keyword">calldata</span></span>)
-        <span class="hljs-title"><span class="hljs-keyword">external</span></span>
-        <span class="hljs-title"><span class="hljs-keyword">override</span></span>
-        <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params"><span class="hljs-keyword">bytes4</span></span>)
-    </span>{
-        <span class="hljs-comment">// ------------------------------------------------------------------------------- //</span>
-        <span class="hljs-comment">// Example NoOp: if swap amount is 69e18, then the swap will be skipped            //</span>
-        <span class="hljs-comment">// ------------------------------------------------------------------------------- //</span>
-        <span class="hljs-keyword">if</span> (params.amountSpecified <span class="hljs-operator">=</span><span class="hljs-operator">=</span> <span class="hljs-number">69e18</span>) <span class="hljs-keyword">return</span> Hooks.NO_OP_SELECTOR;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testQuoter_output</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint128</span> amountIn <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
+        <span class="hljs-keyword">bool</span> zeroForOne <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">uint160</span> MAX_SLIPPAGE <span class="hljs-operator">=</span> zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT;
 
-        beforeSwapCount[key.toId()]<span class="hljs-operator">+</span><span class="hljs-operator">+</span>;
-        <span class="hljs-keyword">return</span> BaseHook.beforeSwap.<span class="hljs-built_in">selector</span>;
+        <span class="hljs-comment">// get the quote</span>
+        PoolKey <span class="hljs-keyword">memory</span> key <span class="hljs-operator">=</span> poolKey;
+        (<span class="hljs-keyword">int128</span>[] <span class="hljs-keyword">memory</span> deltaAmounts, <span class="hljs-keyword">uint160</span> sqrtPriceX96After,) <span class="hljs-operator">=</span> quoter.quoteExactInputSingle(
+            IQuoter.QuoteExactSingleParams(key, zeroForOne, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), amountIn, MAX_SLIPPAGE, ZERO_BYTES)
+        );
+
+        <span class="hljs-comment">// output is amount 1</span>
+        <span class="hljs-keyword">int128</span> outputAmount <span class="hljs-operator">=</span> deltaAmounts[<span class="hljs-number">1</span>];
+        console2.log(<span class="hljs-string">"Quoted output amount: "</span>, <span class="hljs-keyword">int256</span>(outputAmount));
+
+        <span class="hljs-comment">// Perform a test swap</span>
+        BalanceDelta swapDelta <span class="hljs-operator">=</span> swap(poolKey, <span class="hljs-keyword">int256</span>(<span class="hljs-keyword">uint256</span>(amountIn)), zeroForOne, ZERO_BYTES);
+
+        <span class="hljs-comment">// quote agrees with the actual swap</span>
+        assertEq(outputAmount, swapDelta.amount1());
     }
-}
-</code></pre><h2>Example TEMPLATE-SNIPPET</h2>
-<pre><code class="language-solidity"><span class="hljs-keyword">import</span> {<span class="hljs-title">Hooks</span>} <span class="hljs-title"><span class="hljs-keyword">from</span></span> <span class="hljs-string">"v4-core/libraries/Hooks.sol"</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getHooksCalls</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> <span class="hljs-title"><span class="hljs-keyword">pure</span></span> <span class="hljs-title"><span class="hljs-keyword">override</span></span> <span class="hljs-title"><span class="hljs-keyword">returns</span></span> (<span class="hljs-params">Hooks.Calls <span class="hljs-keyword">memory</span></span>) </span>{
-    <span class="hljs-keyword">return</span> Hooks.Calls({
-        beforeInitialize: <span class="hljs-literal">false</span>,
-        afterInitialize: <span class="hljs-literal">false</span>,
-        beforeModifyPosition: <span class="hljs-literal">false</span>,
-        afterModifyPosition: <span class="hljs-literal">false</span>,
-        beforeSwap: <span class="hljs-literal">true</span>,
-        afterSwap: <span class="hljs-literal">false</span>,
-        beforeDonate: <span class="hljs-literal">false</span>,
-        afterDonate: <span class="hljs-literal">false</span>,
-        noOp: <span class="hljs-literal">true</span> <span class="hljs-comment">// -- ENABLE NO-OP --  //</span>
-    });
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">testQuoter_input</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
+        <span class="hljs-keyword">uint128</span> amountOut <span class="hljs-operator">=</span> <span class="hljs-number">1e18</span>;
+        <span class="hljs-keyword">bool</span> zeroForOne <span class="hljs-operator">=</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">uint160</span> MAX_SLIPPAGE <span class="hljs-operator">=</span> zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT;
+
+        <span class="hljs-comment">// get the quote</span>
+        PoolKey <span class="hljs-keyword">memory</span> key <span class="hljs-operator">=</span> poolKey;
+        (<span class="hljs-keyword">int128</span>[] <span class="hljs-keyword">memory</span> deltaAmounts, <span class="hljs-keyword">uint160</span> sqrtPriceX96After,) <span class="hljs-operator">=</span> quoter.quoteExactOutputSingle(
+            IQuoter.QuoteExactSingleParams(key, zeroForOne, <span class="hljs-keyword">address</span>(<span class="hljs-built_in">this</span>), amountOut, MAX_SLIPPAGE, ZERO_BYTES)
+        );
+
+        <span class="hljs-comment">// input (quoted) is amount 0</span>
+        <span class="hljs-keyword">int128</span> inputAmount <span class="hljs-operator">=</span> deltaAmounts[<span class="hljs-number">0</span>];
+        console2.log(<span class="hljs-string">"Quoted input amount: "</span>, <span class="hljs-keyword">int256</span>(inputAmount));
+
+        <span class="hljs-comment">// Perform a exact-output swap</span>
+        BalanceDelta swapDelta <span class="hljs-operator">=</span> swap(poolKey, <span class="hljs-operator">-</span><span class="hljs-keyword">int256</span>(<span class="hljs-keyword">uint256</span>(amountOut)), zeroForOne, ZERO_BYTES);
+        assertEq(inputAmount, swapDelta.amount0());
+        (<span class="hljs-keyword">uint160</span> sqrtPriceX96,,) <span class="hljs-operator">=</span> manager.getSlot0(poolId);
+        assertEq(sqrtPriceX96After, sqrtPriceX96);
+    }
 }
 </code></pre>`
 

@@ -8,6 +8,15 @@
     "trade",
     "swapping"
   ],
+  "/quoter": [
+    "quoter",
+    "quoting",
+    "exact input",
+    "exact output",
+    "single",
+    "multi",
+    "multihop"
+  ],
   "/initialize": [
     "pool",
     "initialize",

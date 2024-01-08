@@ -15,6 +15,27 @@
   "swapping": [
     "/swap"
   ],
+  "quoter": [
+    "/quoter"
+  ],
+  "quoting": [
+    "/quoter"
+  ],
+  "exact input": [
+    "/quoter"
+  ],
+  "exact output": [
+    "/quoter"
+  ],
+  "single": [
+    "/quoter"
+  ],
+  "multi": [
+    "/quoter"
+  ],
+  "multihop": [
+    "/quoter"
+  ],
   "pool": [
     "/initialize"
   ],

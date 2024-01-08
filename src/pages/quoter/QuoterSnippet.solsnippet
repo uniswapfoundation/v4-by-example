@@ -1,0 +1,13 @@
+import {IQuoter} from "v4-periphery/interfaces/IQuoter.sol";
+
+PoolKey memory key;
+uint128 amountIn = 1e18;
+bool zeroForOne = true;
+uint160 MAX_SLIPPAGE = zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT;
+bytes memory hookData;
+
+// exact input will quote deltaAmounts[1] (output)
+// exact output will quote deltaAmounts[0] (input)
+(int128[] memory deltaAmounts, uint160 sqrtPriceX96After,) = quoter.quoteExactInputSingle(
+    IQuoter.QuoteExactSingleParams(key, zeroForOne, address(this), amountIn, MAX_SLIPPAGE, hookData)
+);
