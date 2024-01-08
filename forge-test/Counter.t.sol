@@ -11,11 +11,13 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "./utils/HookTest.sol";
+import {HookTest} from "@v4-by-example/utils/HookTest.sol";
 import {Counter} from "./Counter.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
+import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
+import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 
-contract CounterTest is HookTest {
+contract CounterTest is HookTest, GasSnapshot {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -29,7 +31,7 @@ contract CounterTest is HookTest {
 
         // Deploy the hook to an address with the correct flags
         uint160 flags = uint160(
-            Hooks.BEFORE_SWAP_FLAG | Hooks.AFTER_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
+            Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG
                 | Hooks.BEFORE_REMOVE_LIQUIDITY_FLAG
         );
         (address hookAddress, bytes32 salt) =
@@ -72,5 +74,22 @@ contract CounterTest is HookTest {
 
         assertEq(counter.beforeSwapCount(poolId), 1);
         assertEq(counter.afterSwapCount(poolId), 1);
+    }
+
+    function test_counter_snapshot() public {
+        int256 amount = 1e18;
+        bool zeroForOne = true;
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: amount,
+            sqrtPriceLimitX96: zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT // unlimited impact
+        });
+
+        PoolSwapTest.TestSettings memory testSettings =
+            PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true, currencyAlreadySent: false});
+
+        snapStart("counter");
+        swapRouter.swap(poolKey, params, testSettings, ZERO_BYTES);
+        snapEnd();
     }
 }
