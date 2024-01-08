@@ -11,7 +11,7 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "./utils/HookTest.sol";
+import {HookTest} from "@v4-by-example/utils/HookTest.sol";
 import {NoOpSwap} from "@v4-by-example/pages/hooks/no-op/NoOpSwap.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 

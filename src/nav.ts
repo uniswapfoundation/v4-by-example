@@ -23,6 +23,10 @@ export const SOL_ROUTES: Route[] = [
     path: "swap",
     title: "Swap",
   },
+  {
+    path: "quoter",
+    title: "Quoter"
+  }
 ]
 
 export const HOOK_ROUTES: Route[] = [
