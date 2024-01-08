@@ -33,7 +33,7 @@ npm start
 ## Creating a new page
 
 ```bash
-cp -r src/pages/template src/pages/<path>/<name>
+cp -r src/template src/pages/<path>/<name>
 ```
 
 Edit the following files
