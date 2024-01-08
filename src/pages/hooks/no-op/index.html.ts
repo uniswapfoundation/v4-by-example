@@ -40,7 +40,7 @@ const html = `<ul>
 <p>Use-cases:</p>
 <ul>
 <li>Asynchronous swap fulfillment. Reorder and fulfill swaps at a later point in the time</li>
-<li>Combine <code>NoOp</code> + custom accounting to faciliate swaps with external liquidity</li>
+<li>Combine <code>NoOp</code> + custom accounting to facilitate swaps with external liquidity</li>
 </ul>
 <hr>
 <h2>Example NoOp Hook</h2>
