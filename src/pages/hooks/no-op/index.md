@@ -17,7 +17,7 @@ The hooks will **not revert**
 
 Use-cases:
   * Asynchronous swap fulfillment. Reorder and fulfill swaps at a later point in the time
-  * Combine `NoOp` + custom accounting to faciliate swaps with external liquidity
+  * Combine `NoOp` + custom accounting to facilitate swaps with external liquidity
 
 ---
 ## Example NoOp Hook
