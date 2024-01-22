@@ -167,6 +167,7 @@ contract DynamicFeesTest is HookTest, GasSnapshot {
     }
 
     function test_snapshot_autoFee() public {
+        skip(100_000);
         int256 amount = 1e18;
         bool zeroForOne = true;
         IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
