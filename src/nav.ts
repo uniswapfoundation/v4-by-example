@@ -44,6 +44,10 @@ const FEE_ROUTES: Route[] = [
   {
     path: "fixed-hook-fee",
     title: "Static Hook Fee"
+  },
+  {
+    path: "dynamic-fee",
+    title: "Dynamic Swap Fee"
   }
 ]
 

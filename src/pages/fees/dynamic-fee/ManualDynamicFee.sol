@@ -25,8 +25,10 @@ contract ManualDynamicFee is BaseHook, IDynamicFeeManager {
         startTimestamp = block.timestamp;
     }
 
-    /// @inheritdoc IDynamicFeeManager
+    /// @dev Deteremines a Pool's swap fee. Called and cached by PoolManager.updateDynamicFee()
     function getFee(address, PoolKey calldata) external view override returns (uint24 _currentFee) {
+        // Linearly decaying fee, y = mx + b
+        // After 495,000 seconds (5.72 days), fee will be a minimum of 0.05%
         unchecked {
             uint256 timeElapsed = block.timestamp - startTimestamp;
             _currentFee = timeElapsed > 495000 ? uint24(MIN_FEE) : uint24((START_FEE - (timeElapsed * decayRate)) / 10);
