@@ -54,3 +54,5 @@ Generate react, register routes, and rebuild search index
 ```bash
 npm run generate
 ```
+
+Update the [changelog](src/pages/index.tsx#L11)
