@@ -183,4 +183,25 @@ contract DynamicFeesTest is HookTest, GasSnapshot {
         swapRouter.swap(autoDynamicFeePoolKey, params, testSettings, ZERO_BYTES);
         snapEnd();
     }
+
+    function test_snapshot_manualFee() public {
+        skip(100_000);
+        // poke the pool manager
+        manager.updateDynamicSwapFee(manualDynamicFeePoolKey);
+
+        int256 amount = 1e18;
+        bool zeroForOne = true;
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: amount,
+            sqrtPriceLimitX96: zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT // unlimited impact
+        });
+
+        PoolSwapTest.TestSettings memory testSettings =
+            PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true, currencyAlreadySent: false});
+
+        snapStart("manual dynamic fee");
+        swapRouter.swap(manualDynamicFeePoolKey, params, testSettings, ZERO_BYTES);
+        snapEnd();
+    }
 }
