@@ -45,6 +45,13 @@
     "static fee",
     "hook fee"
   ],
+  "/fees/dynamic-fee": [
+    "fee",
+    "fees",
+    "dynamic fee",
+    "dynamic",
+    "poke"
+  ],
   "/create-liquidity": [
     "liquidity",
     "LP",

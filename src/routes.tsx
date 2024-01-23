@@ -1,4 +1,5 @@
 import component_create_liquidity from "./pages/create-liquidity"
+import component_fees_dynamic_fee from "./pages/fees/dynamic-fee"
 import component_fees_fixed_hook_fee from "./pages/fees/fixed-hook-fee"
 import component_hooks_custom_curve from "./pages/hooks/custom-curve"
 import component_hooks_no_op from "./pages/hooks/no-op"
@@ -27,6 +28,10 @@ const routes: Route[] = [
     {
         path: "/create-liquidity",
         component: component_create_liquidity
+    },
+    {
+        path: "/fees/dynamic-fee",
+        component: component_fees_dynamic_fee
     },
     {
         path: "/fees/fixed-hook-fee",
