@@ -17,6 +17,22 @@ contract MsgSenderHookData is BaseHook {
 
     constructor(IPoolManager _poolManager) BaseHook(_poolManager) {}
 
+    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata hookData)
+        external
+        override
+        returns (bytes4)
+    {
+        // --- Read the user's address --- //
+        address user = abi.decode(hookData, (address));
+        require(allowedUsers[user], "MsgSenderHookData: User not allowed");
+        return BaseHook.beforeSwap.selector;
+    }
+
+    // Helper function for demonstration
+    function setAllowedUser(address user, bool allowed) external {
+        allowedUsers[user] = allowed;
+    }
+
     function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
         return Hooks.Permissions({
             beforeInitialize: false,
@@ -32,21 +48,5 @@ contract MsgSenderHookData is BaseHook {
             noOp: false,
             accessLock: false
         });
-    }
-
-    function beforeSwap(address, PoolKey calldata key, IPoolManager.SwapParams calldata, bytes calldata hookData)
-        external
-        override
-        returns (bytes4)
-    {
-        // --- Read the user's address --- //
-        address user = abi.decode(hookData, (address));
-        require(allowedUsers[user], "MsgSenderHookData: User not allowed");
-        return BaseHook.beforeSwap.selector;
-    }
-
-    // Helper function for demonstration
-    function setAllowedUser(address user, bool allowed) external {
-        allowedUsers[user] = allowed;
     }
 }
