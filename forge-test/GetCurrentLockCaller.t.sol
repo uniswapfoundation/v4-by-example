@@ -12,7 +12,7 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "./utils/HookTest.sol";
+import {HookTest} from "@v4-by-example/utils/HookTest.sol";
 import {GetCurrentLockCaller} from "src/pages/hooks/msg-sender/GetCurrentLockCaller.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 
@@ -43,11 +43,13 @@ contract GetCurrentLockCallerTest is HookTest {
         initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-120, 120, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyPosition(
+        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
+        modifyPositionRouter.modifyLiquidity(
+            poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
+        );
+        modifyPositionRouter.modifyLiquidity(
             poolKey,
-            IPoolManager.ModifyPositionParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10 ether),
+            IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10 ether),
             ZERO_BYTES
         );
     }
@@ -77,16 +79,19 @@ contract GetCurrentLockCallerTest is HookTest {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        // vm.expectRevert();
+        vm.expectRevert();
         lockSwap(poolKey, amount, zeroForOne, ZERO_BYTES, true);
         // ------------------- //
         vm.stopPrank();
     }
 
-    function lockSwap(PoolKey memory key, int256 amountSpecified, bool zeroForOne, bytes memory hookData, bool expectRevert)
-        internal
-        returns (BalanceDelta swapDelta)
-    {
+    function lockSwap(
+        PoolKey memory key,
+        int256 amountSpecified,
+        bool zeroForOne,
+        bytes memory hookData,
+        bool expectRevert
+    ) internal returns (BalanceDelta swapDelta) {
         IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
             zeroForOne: zeroForOne,
             amountSpecified: amountSpecified,
