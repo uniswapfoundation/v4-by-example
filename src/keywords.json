@@ -30,6 +30,13 @@
     "swap",
     "skip swap"
   ],
+  "/hooks/msg-sender": [
+    "hook",
+    "hooks",
+    "msg.sender",
+    "msgsender",
+    "sender"
+  ],
   "/hooks/custom-curve": [
     "hook",
     "hooks",

@@ -1,0 +1,7 @@
+IPoolManager.SwapParams memory params = ...;
+
+PoolSwapTest.TestSettings memory testSettings = ...;
+
+// provide the user's address as hookData to be available inside the hook function
+bytes memory hookData = abi.encode(address(USER_ADDRESS));
+swapRouter.swap(key, params, testSettings, hookData);
