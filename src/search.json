@@ -9,6 +9,27 @@
   "swapping": [
     "/swap"
   ],
+  "quoter": [
+    "/quoter"
+  ],
+  "quoting": [
+    "/quoter"
+  ],
+  "exact input": [
+    "/quoter"
+  ],
+  "exact output": [
+    "/quoter"
+  ],
+  "single": [
+    "/quoter"
+  ],
+  "multi": [
+    "/quoter"
+  ],
+  "multihop": [
+    "/quoter"
+  ],
   "pool": [
     "/initialize"
   ],
@@ -69,13 +90,26 @@
     "/hooks/custom-curve"
   ],
   "fee": [
-    "/fees/fixed-hook-fee"
+    "/fees/fixed-hook-fee",
+    "/fees/dynamic-fee"
   ],
   "static fee": [
     "/fees/fixed-hook-fee"
   ],
   "hook fee": [
     "/fees/fixed-hook-fee"
+  ],
+  "fees": [
+    "/fees/dynamic-fee"
+  ],
+  "dynamic fee": [
+    "/fees/dynamic-fee"
+  ],
+  "dynamic": [
+    "/fees/dynamic-fee"
+  ],
+  "poke": [
+    "/fees/dynamic-fee"
   ],
   "liquidity": [
     "/create-liquidity"

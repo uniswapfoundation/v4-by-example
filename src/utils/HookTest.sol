@@ -8,7 +8,7 @@ import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/types/PoolKey.sol";
 import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolInitializeTest} from "v4-core/test/PoolInitializeTest.sol";
-import {PoolModifyPositionTest} from "v4-core/test/PoolModifyPositionTest.sol";
+import {PoolModifyLiquidityTest} from "v4-core/test/PoolModifyLiquidityTest.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 import {PoolDonateTest} from "v4-core/test/PoolDonateTest.sol";
 
@@ -20,7 +20,7 @@ import {TickMath} from "v4-core/libraries/TickMath.sol";
 contract HookTest is Test {
     PoolManager manager;
     PoolInitializeTest initializeRouter;
-    PoolModifyPositionTest modifyPositionRouter;
+    PoolModifyLiquidityTest modifyPositionRouter;
     PoolSwapTest swapRouter;
     PoolDonateTest donateRouter;
     TestERC20 token0;
@@ -48,7 +48,7 @@ contract HookTest is Test {
 
         // Helpers for interacting with the pool
         initializeRouter = new PoolInitializeTest(IPoolManager(address(manager)));
-        modifyPositionRouter = new PoolModifyPositionTest(IPoolManager(address(manager)));
+        modifyPositionRouter = new PoolModifyLiquidityTest(IPoolManager(address(manager)));
         swapRouter = new PoolSwapTest(IPoolManager(address(manager)));
         donateRouter = new PoolDonateTest(IPoolManager(address(manager)));
 

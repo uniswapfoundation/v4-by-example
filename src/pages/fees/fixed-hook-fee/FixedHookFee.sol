@@ -23,8 +23,10 @@ contract FixedHookFee is BaseHook {
         return Hooks.Permissions({
             beforeInitialize: false,
             afterInitialize: false,
-            beforeModifyPosition: false,
-            afterModifyPosition: false,
+            beforeAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterAddLiquidity: false,
+            afterRemoveLiquidity: false,
             beforeSwap: true,
             afterSwap: false,
             beforeDonate: false,
@@ -41,8 +43,8 @@ contract FixedHookFee is BaseHook {
     {
         // take a fixed fee of 0.0001 of the input token
         params.zeroForOne
-            ? poolManager.mint(key.currency0, address(this), FIXED_HOOK_FEE)
-            : poolManager.mint(key.currency1, address(this), FIXED_HOOK_FEE);
+            ? poolManager.mint(address(this), key.currency0.toId(), FIXED_HOOK_FEE)
+            : poolManager.mint(address(this), key.currency1.toId(), FIXED_HOOK_FEE);
 
         return BaseHook.beforeSwap.selector;
     }
@@ -57,8 +59,8 @@ contract FixedHookFee is BaseHook {
     /// @dev requires the lock pattern in order to call poolManager.burn
     function handleCollectFee(address recipient, Currency currency) external returns (uint256 amount) {
         // convert the fee (Claims) into ERC20 tokens
-        amount = poolManager.balanceOf(address(this), currency);
-        poolManager.burn(currency, amount);
+        amount = poolManager.balanceOf(address(this), currency.toId());
+        poolManager.burn(address(this), currency.toId(), amount);
 
         // direct claims (the tokens) to the recipient
         poolManager.take(currency, recipient, amount);

@@ -4,6 +4,15 @@
     "trade",
     "swapping"
   ],
+  "/quoter": [
+    "quoter",
+    "quoting",
+    "exact input",
+    "exact output",
+    "single",
+    "multi",
+    "multihop"
+  ],
   "/initialize": [
     "pool",
     "initialize",
@@ -42,6 +51,13 @@
     "fee",
     "static fee",
     "hook fee"
+  ],
+  "/fees/dynamic-fee": [
+    "fee",
+    "fees",
+    "dynamic fee",
+    "dynamic",
+    "poke"
   ],
   "/create-liquidity": [
     "liquidity",

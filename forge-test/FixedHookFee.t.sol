@@ -11,11 +11,13 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "./utils/HookTest.sol";
+import {HookTest} from "@v4-by-example/utils/HookTest.sol";
 import {FixedHookFee} from "@v4-by-example/pages/fees/fixed-hook-fee/FixedHookFee.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
+import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
+import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 
-contract FixedHookFeeTest is HookTest {
+contract FixedHookFeeTest is HookTest, GasSnapshot {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -42,11 +44,13 @@ contract FixedHookFeeTest is HookTest {
         initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyPosition(poolKey, IPoolManager.ModifyPositionParams(-120, 120, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyPosition(
+        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
+        modifyPositionRouter.modifyLiquidity(
+            poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
+        );
+        modifyPositionRouter.modifyLiquidity(
             poolKey,
-            IPoolManager.ModifyPositionParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10_000 ether),
+            IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10_000 ether),
             ZERO_BYTES
         );
     }
@@ -67,5 +71,22 @@ contract FixedHookFeeTest is HookTest {
         assertEq(token0.balanceOf(alice), 0);
         hook.collectFee(alice, Currency.wrap(address(token0)));
         assertEq(token0.balanceOf(alice), hook.FIXED_HOOK_FEE());
+    }
+
+    function test_snap_hookFee() public {
+        int256 amount = 1e18;
+        bool zeroForOne = true;
+        IPoolManager.SwapParams memory params = IPoolManager.SwapParams({
+            zeroForOne: zeroForOne,
+            amountSpecified: amount,
+            sqrtPriceLimitX96: zeroForOne ? MIN_PRICE_LIMIT : MAX_PRICE_LIMIT // unlimited impact
+        });
+
+        PoolSwapTest.TestSettings memory testSettings =
+            PoolSwapTest.TestSettings({withdrawTokens: true, settleUsingTransfer: true, currencyAlreadySent: false});
+
+        snapStart("hookFee");
+        swapRouter.swap(poolKey, params, testSettings, ZERO_BYTES);
+        snapEnd();
     }
 }

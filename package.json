@@ -15,7 +15,11 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
     "md-to-react": "node scripts/md-to-react.js",
-    "lint": "prettier --write src"
+    "lint": "prettier --write src",
+    "reactify": "find src/pages -type d -not -path \"*/__snapshots__\" -exec npx ts-node --project ./scripts/tsconfig.json scripts/md-to-react.ts {} \\;",
+    "routes": "npx ts-node --project ./scripts/tsconfig.json scripts/build-routes.ts",
+    "search-index": "npx ts-node --project ./scripts/tsconfig.json scripts/build-search-index.ts",
+    "generate": "npm run reactify && npm run routes && npm run search-index"
   },
   "eslintConfig": {
     "extends": "react-app"

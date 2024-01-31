@@ -23,6 +23,10 @@ export const SOL_ROUTES: Route[] = [
     path: "swap",
     title: "Swap",
   },
+  {
+    path: "quoter",
+    title: "Quoter"
+  }
 ]
 
 export const HOOK_ROUTES: Route[] = [
@@ -44,6 +48,10 @@ const FEE_ROUTES: Route[] = [
   {
     path: "fixed-hook-fee",
     title: "Static Hook Fee"
+  },
+  {
+    path: "dynamic-fee",
+    title: "Dynamic Swap Fee"
   }
 ]
 

@@ -19,8 +19,10 @@ contract NoOpSwap is BaseHook {
         return Hooks.Permissions({
             beforeInitialize: false,
             afterInitialize: false,
-            beforeModifyPosition: false,
-            afterModifyPosition: false,
+            beforeAddLiquidity: false,
+            beforeRemoveLiquidity: false,
+            afterAddLiquidity: false,
+            afterRemoveLiquidity: false,
             beforeSwap: true, // -- No-op'ing the swap --  //
             afterSwap: false,
             beforeDonate: false,
