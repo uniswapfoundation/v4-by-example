@@ -1,7 +1,8 @@
 {
   "swap": [
     "/swap",
-    "/hooks/no-op"
+    "/hooks/no-op",
+    "/fees/swap-fee"
   ],
   "trade": [
     "/swap"
@@ -89,6 +90,19 @@
   "custom accounting": [
     "/hooks/custom-curve"
   ],
+  "fees": [
+    "/fees/swap-fee",
+    "/fees/dynamic-fee"
+  ],
+  "swap fee": [
+    "/fees/swap-fee"
+  ],
+  "lp fee": [
+    "/fees/swap-fee"
+  ],
+  "fee tier": [
+    "/fees/swap-fee"
+  ],
   "fee": [
     "/fees/fixed-hook-fee",
     "/fees/dynamic-fee"
@@ -98,9 +112,6 @@
   ],
   "hook fee": [
     "/fees/fixed-hook-fee"
-  ],
-  "fees": [
-    "/fees/dynamic-fee"
   ],
   "dynamic fee": [
     "/fees/dynamic-fee"

@@ -45,6 +45,13 @@
     "custom curve",
     "custom accounting"
   ],
+  "/fees/swap-fee": [
+    "fees",
+    "swap",
+    "swap fee",
+    "lp fee",
+    "fee tier"
+  ],
   "/fees/fixed-hook-fee": [
     "hook",
     "hooks",

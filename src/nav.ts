@@ -46,6 +46,10 @@ export const HOOK_ROUTES: Route[] = [
 
 const FEE_ROUTES: Route[] = [
   {
+    path: "swap-fee",
+    title: "Swap Fee"
+  },
+  {
     path: "fixed-hook-fee",
     title: "Static Hook Fee"
   },

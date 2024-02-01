@@ -1,0 +1,12 @@
+uint24 swapFee = 500; // 0.05% swap fee, 3000 = 0.30%
+
+// ----------------------------------------------- //
+
+PoolKey memory pool = PoolKey({
+    currency0: Currency.wrap(token0),
+    currency1: Currency.wrap(token1),
+    fee: swapFee,                     // <-- Setting the Swap Fee -- //
+    tickSpacing: tickSpacing,
+    hooks: IHooks(address(0x0))
+});
+initializeRouter.initialize(pool, ...);
