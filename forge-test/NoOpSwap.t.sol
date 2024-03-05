@@ -28,7 +28,7 @@ contract NoOpSwapTest is HookTest {
         HookTest.initHookTestEnv();
 
         // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.NO_OP_FLAG);
+        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG);
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(NoOpSwap).creationCode, abi.encode(address(manager)));
         hook = new NoOpSwap{salt: salt}(IPoolManager(address(manager)));

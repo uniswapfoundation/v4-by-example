@@ -9,8 +9,6 @@ function getHookPermissions() public pure override returns (Hooks.Permissions me
         beforeSwap: true,
         afterSwap: false,
         beforeDonate: false,
-        afterDonate: false,
-        noOp: false,
-        accessLock: true // -- ENABLE ACCESS LOCK --  //
+        afterDonate: false
     });
 }

@@ -26,9 +26,7 @@ contract NoOpSwap is BaseHook {
             beforeSwap: true, // -- No-op'ing the swap --  //
             afterSwap: false,
             beforeDonate: false,
-            afterDonate: false,
-            noOp: true, // -- ENABLE NO-OP --  //
-            accessLock: false
+            afterDonate: false
         });
     }
 
@@ -40,7 +38,8 @@ contract NoOpSwap is BaseHook {
         // ------------------------------------------------------------------------------- //
         // Example NoOp: if swap amount is 69e18, then the swap will be skipped            //
         // ------------------------------------------------------------------------------- //
-        if (params.amountSpecified == 69e18) return Hooks.NO_OP_SELECTOR;
+        // TODO: update
+        if (params.amountSpecified == 69e18) return BaseHook.beforeSwap.selector;
 
         beforeSwapCount[key.toId()]++;
         return BaseHook.beforeSwap.selector;

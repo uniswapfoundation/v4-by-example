@@ -44,9 +44,7 @@ contract MsgSenderHookData is BaseHook {
             beforeSwap: true,
             afterSwap: false,
             beforeDonate: false,
-            afterDonate: false,
-            noOp: false,
-            accessLock: false
+            afterDonate: false
         });
     }
 }

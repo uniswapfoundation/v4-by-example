@@ -28,9 +28,7 @@ contract CustomCurveTest is HookTest {
         HookTest.initHookTestEnv();
 
         // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(
-            Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG | Hooks.NO_OP_FLAG | Hooks.ACCESS_LOCK_FLAG
-        );
+        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.BEFORE_ADD_LIQUIDITY_FLAG);
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(CustomCurve).creationCode, abi.encode(address(manager)));
         hook = new CustomCurve{salt: salt}(IPoolManager(address(manager)));
