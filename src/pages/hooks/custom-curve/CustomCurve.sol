@@ -29,9 +29,7 @@ contract CustomCurve is BaseHook {
             beforeSwap: true, // -- No-op'ing the swap --  //
             afterSwap: false,
             beforeDonate: false,
-            afterDonate: false,
-            noOp: true, // -- ENABLE NO-OP --  //
-            accessLock: true // -- ENABLE CUSTOM CURVES -- //
+            afterDonate: false
         });
     }
 
@@ -89,7 +87,7 @@ contract CustomCurve is BaseHook {
         poolManager.settle(outbound);
 
         // prevent normal v4 swap logic from executing
-        return Hooks.NO_OP_SELECTOR;
+        return BaseHook.beforeSwap.selector;
     }
 
     /// @notice No liquidity will be managed by v4 PoolManager

@@ -32,7 +32,7 @@ contract FixedHookFeeTest is HookTest, GasSnapshot {
         HookTest.initHookTestEnv();
 
         // Deploy the hook to an address with the correct flags
-        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG | Hooks.ACCESS_LOCK_FLAG);
+        uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG);
         (address hookAddress, bytes32 salt) =
             HookMiner.find(address(this), flags, type(FixedHookFee).creationCode, abi.encode(address(manager)));
         hook = new FixedHookFee{salt: salt}(IPoolManager(address(manager)));
