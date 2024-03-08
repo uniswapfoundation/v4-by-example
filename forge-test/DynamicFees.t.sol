@@ -12,7 +12,7 @@ import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
 import {FeeLibrary} from "v4-core/libraries/FeeLibrary.sol";
-import {HookTest} from "@v4-by-example/utils/HookTest.sol";
+import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
@@ -21,7 +21,7 @@ import {FixedPointMathLib} from "solmate/utils/FixedPointMathLib.sol";
 import {ManualDynamicFee} from "@v4-by-example/pages/fees/dynamic-fee/ManualDynamicFee.sol";
 import {AutoDynamicFee} from "@v4-by-example/pages/fees/dynamic-fee/AutoDynamicFee.sol";
 
-contract DynamicFeesTest is HookTest, GasSnapshot {
+contract DynamicFeesTest is Test, Deployers, GasSnapshot {
     using FixedPointMathLib for uint256;
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
@@ -34,7 +34,8 @@ contract DynamicFeesTest is HookTest, GasSnapshot {
 
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+        Deployers.deployMintAndApprove2Currencies();
 
         // Deploy the hook to an address with the correct flags
         uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG);
@@ -49,32 +50,21 @@ contract DynamicFeesTest is HookTest, GasSnapshot {
         require(address(manualDynamicFee) == hookAddress, "hook address mismatch");
 
         // Create the pools
-        autoDynamicFeePoolKey = PoolKey(
-            Currency.wrap(address(token0)),
-            Currency.wrap(address(token1)),
-            FeeLibrary.DYNAMIC_FEE_FLAG,
-            60,
-            IHooks(autoDynamicFee)
-        );
-        initializeRouter.initialize(autoDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        autoDynamicFeePoolKey = PoolKey(currency0, currency1, FeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(autoDynamicFee));
+        manager.initialize(autoDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
-        manualDynamicFeePoolKey = PoolKey(
-            Currency.wrap(address(token0)),
-            Currency.wrap(address(token1)),
-            FeeLibrary.DYNAMIC_FEE_FLAG,
-            60,
-            IHooks(manualDynamicFee)
-        );
-        initializeRouter.initialize(manualDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manualDynamicFeePoolKey =
+            PoolKey(currency0, currency1, FeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(manualDynamicFee));
+        manager.initialize(manualDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             autoDynamicFeePoolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 100000 ether),
             ZERO_BYTES
         );
 
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             manualDynamicFeePoolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 100000 ether),
             ZERO_BYTES

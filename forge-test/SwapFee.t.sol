@@ -11,12 +11,12 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "@v4-by-example/utils/HookTest.sol";
+import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 
-contract SwapFeeTest is HookTest, GasSnapshot {
+contract SwapFeeTest is Test, Deployers, GasSnapshot {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -25,20 +25,22 @@ contract SwapFeeTest is HookTest, GasSnapshot {
 
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+        Deployers.deployMintAndApprove2Currencies();
 
         // Create the pool
-        poolKey =
-            PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(address(0x0)));
+        poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(address(0x0)));
         poolId = poolKey.toId();
-        initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
+            poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES
+        );
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
         );
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10 ether),
             ZERO_BYTES
@@ -46,8 +48,8 @@ contract SwapFeeTest is HookTest, GasSnapshot {
     }
 
     function test_zeroForOne_exactInput() public {
-        uint256 balance0Before = token0.balanceOf(address(this));
-        uint256 balance1Before = token1.balanceOf(address(this));
+        uint256 balance0Before = currency0.balanceOfSelf();
+        uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
         int256 amount = 1e18;
@@ -55,16 +57,16 @@ contract SwapFeeTest is HookTest, GasSnapshot {
         BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
         // ------------------- //
 
-        uint256 balance0After = token0.balanceOf(address(this));
-        uint256 balance1After = token1.balanceOf(address(this));
+        uint256 balance0After = currency0.balanceOfSelf();
+        uint256 balance1After = currency1.balanceOfSelf();
 
         assertEq(balance0Before - balance0After, 1e18);
         assertApproxEqAbs(balance1After - balance1Before, 1e18, 0.1e18); // fee on output token
     }
 
     function test_zeroForOne_exactOutput() public {
-        uint256 balance0Before = token0.balanceOf(address(this));
-        uint256 balance1Before = token1.balanceOf(address(this));
+        uint256 balance0Before = currency0.balanceOfSelf();
+        uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
         int256 amount = -1e18;
@@ -72,16 +74,16 @@ contract SwapFeeTest is HookTest, GasSnapshot {
         BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
         // ------------------- //
 
-        uint256 balance0After = token0.balanceOf(address(this));
-        uint256 balance1After = token1.balanceOf(address(this));
+        uint256 balance0After = currency0.balanceOfSelf();
+        uint256 balance1After = currency1.balanceOfSelf();
 
         assertApproxEqAbs(balance0Before - balance0After, 1e18, 0.1e18); // fee on input token
         assertEq(balance1After - balance1Before, 1e18);
     }
 
     function test_oneForZero_exactInput() public {
-        uint256 balance0Before = token0.balanceOf(address(this));
-        uint256 balance1Before = token1.balanceOf(address(this));
+        uint256 balance0Before = currency0.balanceOfSelf();
+        uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
         int256 amount = 1e18;
@@ -89,8 +91,8 @@ contract SwapFeeTest is HookTest, GasSnapshot {
         BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
         // ------------------- //
 
-        uint256 balance0After = token0.balanceOf(address(this));
-        uint256 balance1After = token1.balanceOf(address(this));
+        uint256 balance0After = currency0.balanceOfSelf();
+        uint256 balance1After = currency1.balanceOfSelf();
 
         // fee on output token 0
         assertEq(balance1Before - balance1After, 1e18);
@@ -98,8 +100,8 @@ contract SwapFeeTest is HookTest, GasSnapshot {
     }
 
     function test_oneForZero_exactOutput() public {
-        uint256 balance0Before = token0.balanceOf(address(this));
-        uint256 balance1Before = token1.balanceOf(address(this));
+        uint256 balance0Before = currency0.balanceOfSelf();
+        uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
         int256 amount = -1e18;
@@ -107,8 +109,8 @@ contract SwapFeeTest is HookTest, GasSnapshot {
         BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
         // ------------------- //
 
-        uint256 balance0After = token0.balanceOf(address(this));
-        uint256 balance1After = token1.balanceOf(address(this));
+        uint256 balance0After = currency0.balanceOfSelf();
+        uint256 balance1After = currency1.balanceOfSelf();
 
         // fee on input token
         assertApproxEqAbs(balance1Before - balance1After, 1e18, 0.1e18);

@@ -11,13 +11,13 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "@v4-by-example/utils/HookTest.sol";
+import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {Counter} from "./Counter.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 
-contract CounterTest is HookTest, GasSnapshot {
+contract CounterTest is Test, Deployers, GasSnapshot {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -27,7 +27,8 @@ contract CounterTest is HookTest, GasSnapshot {
 
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+        Deployers.deployMintAndApprove2Currencies();
 
         // Deploy the hook to an address with the correct flags
         uint160 flags = uint160(
@@ -40,16 +41,18 @@ contract CounterTest is HookTest, GasSnapshot {
         require(address(counter) == hookAddress, "CounterTest: hook address mismatch");
 
         // Create the pool
-        poolKey = PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(counter));
+        poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(counter));
         poolId = poolKey.toId();
-        initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
+            poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES
+        );
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
         );
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10 ether),
             ZERO_BYTES
