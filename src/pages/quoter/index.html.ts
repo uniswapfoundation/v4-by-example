@@ -81,7 +81,8 @@ PoolKey <span class="hljs-keyword">memory</span> key;
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setUp</span>(<span class="hljs-params"></span>) <span class="hljs-title"><span class="hljs-keyword">public</span></span> </span>{
         <span class="hljs-comment">// creates the pool manager, test tokens, and other utility routers</span>
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+Deployers.deployMintAndApprove2Currencies();
         quoter <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> Quoter(<span class="hljs-keyword">address</span>(manager));
 
         <span class="hljs-comment">// Create the pool</span>
@@ -91,7 +92,7 @@ PoolKey <span class="hljs-keyword">memory</span> key;
         initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         <span class="hljs-comment">// Provide liquidity to the pool</span>
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(<span class="hljs-number">60</span>), TickMath.maxUsableTick(<span class="hljs-number">60</span>), <span class="hljs-number">1000</span> <span class="hljs-literal">ether</span>),
             ZERO_BYTES

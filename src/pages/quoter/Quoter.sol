@@ -11,11 +11,11 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "@v4-by-example/utils/HookTest.sol";
+import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {IQuoter} from "v4-periphery/interfaces/IQuoter.sol";
 import {Quoter} from "v4-periphery/lens/Quoter.sol";
 
-contract QuoterTest is HookTest {
+contract QuoterTest is Test, Deployers {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -25,17 +25,17 @@ contract QuoterTest is HookTest {
 
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+        Deployers.deployMintAndApprove2Currencies();
         quoter = new Quoter(address(manager));
 
         // Create the pool
-        poolKey =
-            PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(address(0x0)));
+        poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(address(0x0)));
         poolId = poolKey.toId();
-        initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 1000 ether),
             ZERO_BYTES

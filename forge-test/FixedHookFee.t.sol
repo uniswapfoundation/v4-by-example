@@ -11,13 +11,13 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {HookTest} from "@v4-by-example/utils/HookTest.sol";
+import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {FixedHookFee} from "@v4-by-example/pages/fees/fixed-hook-fee/FixedHookFee.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
 import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
 
-contract FixedHookFeeTest is HookTest, GasSnapshot {
+contract FixedHookFeeTest is Test, Deployers, GasSnapshot {
     using PoolIdLibrary for PoolKey;
     using CurrencyLibrary for Currency;
 
@@ -29,7 +29,8 @@ contract FixedHookFeeTest is HookTest, GasSnapshot {
 
     function setUp() public {
         // creates the pool manager, test tokens, and other utility routers
-        HookTest.initHookTestEnv();
+        Deployers.deployFreshManagerAndRouters();
+        Deployers.deployMintAndApprove2Currencies();
 
         // Deploy the hook to an address with the correct flags
         uint160 flags = uint160(Hooks.BEFORE_SWAP_FLAG);
@@ -39,16 +40,18 @@ contract FixedHookFeeTest is HookTest, GasSnapshot {
         require(address(hook) == hookAddress, "FixedHookFeeTest: hook address mismatch");
 
         // Create the pool
-        poolKey = PoolKey(Currency.wrap(address(token0)), Currency.wrap(address(token1)), 3000, 60, IHooks(hook));
+        poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(hook));
         poolId = poolKey.toId();
-        initializeRouter.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
-        modifyPositionRouter.modifyLiquidity(poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES);
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
+            poolKey, IPoolManager.ModifyLiquidityParams(-60, 60, 10 ether), ZERO_BYTES
+        );
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey, IPoolManager.ModifyLiquidityParams(-120, 120, 10 ether), ZERO_BYTES
         );
-        modifyPositionRouter.modifyLiquidity(
+        modifyLiquidityRouter.modifyLiquidity(
             poolKey,
             IPoolManager.ModifyLiquidityParams(TickMath.minUsableTick(60), TickMath.maxUsableTick(60), 10_000 ether),
             ZERO_BYTES
@@ -56,21 +59,21 @@ contract FixedHookFeeTest is HookTest, GasSnapshot {
     }
 
     function test_hookFee() public {
-        uint256 balanceBefore = token0.balanceOf(address(this));
+        uint256 balanceBefore = currency0.balanceOfSelf();
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
         swap(poolKey, amount, zeroForOne, ZERO_BYTES);
         // ------------------- //
-        uint256 balanceAfter = token0.balanceOf(address(this));
+        uint256 balanceAfter = currency0.balanceOfSelf();
 
         // swapper paid for the fixed hook fee
         assertEq(balanceBefore - balanceAfter, uint256(amount) + hook.FIXED_HOOK_FEE());
 
         // collect the hook fees
-        assertEq(token0.balanceOf(alice), 0);
-        hook.collectFee(alice, Currency.wrap(address(token0)));
-        assertEq(token0.balanceOf(alice), hook.FIXED_HOOK_FEE());
+        assertEq(currency0.balanceOf(alice), 0);
+        hook.collectFee(alice, currency0);
+        assertEq(currency0.balanceOf(alice), hook.FIXED_HOOK_FEE());
     }
 
     function test_snap_hookFee() public {

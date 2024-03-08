@@ -22,8 +22,8 @@ import {FeeLibrary} from "v4-core/libraries/FeeLibrary.sol";
 
 
 poolKey = PoolKey(
-    Currency.wrap(address(token0)),
-    Currency.wrap(address(token1)),
+    currency0,
+    currency1,
     FeeLibrary.DYNAMIC_FEE_FLAG, // signal that the pool has a dynamic fee
     60,
     IHooks(hook)
