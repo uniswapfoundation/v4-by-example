@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {IHooks} from "v4-core/interfaces/IHooks.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {IHooks} from "v4-core/src/interfaces/IHooks.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
 
 contract PoolInitialize {
     using CurrencyLibrary for Currency;

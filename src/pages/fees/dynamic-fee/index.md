@@ -18,7 +18,7 @@ Despite its name, the fee is *cached* by the `PoolManager` and *the hook* must c
 ### Initialize a Dynamic Fee Pool
 
 ```solidity
-import {SwapFeeLibrary} from "v4-core/libraries/SwapFeeLibrary.sol";
+import {SwapFeeLibrary} from "v4-core/src/libraries/SwapFeeLibrary.sol";
 
 
 poolKey = PoolKey(

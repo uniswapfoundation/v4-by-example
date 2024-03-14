@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-import {BaseHook} from "v4-periphery/BaseHook.sol";
+import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 
 /// @notice A time-decaying dynamically fee, updated automatically with beforeSwap()
 contract AutoDynamicFee is BaseHook {
