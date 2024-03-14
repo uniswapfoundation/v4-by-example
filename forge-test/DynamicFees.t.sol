@@ -11,7 +11,7 @@ import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
 import {Constants} from "v4-core/../test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {FeeLibrary} from "v4-core/libraries/FeeLibrary.sol";
+import {SwapFeeLibrary} from "v4-core/libraries/SwapFeeLibrary.sol";
 import {Deployers} from "v4-core/../test/utils/Deployers.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
@@ -50,11 +50,11 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         require(address(manualDynamicFee) == hookAddress, "hook address mismatch");
 
         // Create the pools
-        autoDynamicFeePoolKey = PoolKey(currency0, currency1, FeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(autoDynamicFee));
+        autoDynamicFeePoolKey = PoolKey(currency0, currency1, SwapFeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(autoDynamicFee));
         manager.initialize(autoDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         manualDynamicFeePoolKey =
-            PoolKey(currency0, currency1, FeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(manualDynamicFee));
+            PoolKey(currency0, currency1, SwapFeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(manualDynamicFee));
         manager.initialize(manualDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
@@ -122,8 +122,8 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // skip 496,000 seconds, fee is now floored at 0.05%
         skip(496000);
 
-        // poke the pool manager
-        manager.updateDynamicSwapFee(manualDynamicFeePoolKey);
+        // manually update the fee
+        manualDynamicFee.setFee(manualDynamicFeePoolKey);
 
         // Perform a test swap //
         int256 amount = 1e18;
