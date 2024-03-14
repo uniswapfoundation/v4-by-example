@@ -7,9 +7,9 @@ keywords: [fee, fees, dynamic fee, dynamic, poke]
 
 - Design a v4 pool with a dynamic fee
 
-Uniswap v4 pools can support dynamic swap fees, and do not need to adhere to a static fee (0.05% / 0.30% / 1.0%). The hook needs to inherit `IDynamicFeeManager` and use `FeeLibrary.DYNAMIC_FEE_FLAG` in its `PoolKey.fee`.
+Uniswap v4 pools can support dynamic swap fees, and do not need to adhere to a static fee (0.05% / 0.30% / 1.0%). The hook needs to use `SwapFeeLibrary.DYNAMIC_FEE_FLAG` in its `PoolKey.fee`.
 
-Despite its name, the fee is *cached* by the `PoolManager` and an external call `PoolManager.updateDynamicFee()` is required to change the swap fee.
+Despite its name, the fee is *cached* by the `PoolManager` and *the hook* must call `PoolManager.updateDynamicSwapFee()` to change the swap fee.
 
 **Note: dynamic fees can be computed every swap, but incurs a gas overhead**
 
@@ -18,17 +18,17 @@ Despite its name, the fee is *cached* by the `PoolManager` and an external call 
 ### Initialize a Dynamic Fee Pool
 
 ```solidity
-import {FeeLibrary} from "v4-core/libraries/FeeLibrary.sol";
+import {SwapFeeLibrary} from "v4-core/libraries/SwapFeeLibrary.sol";
 
 
 poolKey = PoolKey(
     currency0,
     currency1,
-    FeeLibrary.DYNAMIC_FEE_FLAG, // signal that the pool has a dynamic fee
+    SwapFeeLibrary.DYNAMIC_FEE_FLAG, // signal that the pool has a dynamic fee
     60,
     IHooks(hook)
 );
-initializeRouter.initialize(poolKey, startingPrice, hookData);
+manager.initialize(poolKey, startingPrice, hookData);
 ```
 
 ## Example: Manual Dynamic Fee
@@ -40,9 +40,8 @@ initializeRouter.initialize(poolKey, startingPrice, hookData);
 * After 495,000 seconds, the minimum fee is set to 0.05%
 
 
-1) Inherit `IDynamicFeeManager`
-2) Implement `getFee()`
-3) Poke `PoolManager.updateDynamicFee()` to change the fee
+2) Implement `setFee()`
+3) Poke `hook.setFee()` to change the fee
 ```solidity
 {{{ManualDynamicFee}}}
 ```
@@ -51,7 +50,7 @@ initializeRouter.initialize(poolKey, startingPrice, hookData);
 
 *Implements an automatically-updated, time-decaying dynamic fee*
 
-The hook uses `beforeSwap` to automatically poke the PoolManager, ensuring the fee is always up-to-date
+The hook uses `beforeSwap` to automatically call the PoolManager, ensuring the fee is always up-to-date
 
 *incurs +23,000 gas overhead*
 ```solidity
