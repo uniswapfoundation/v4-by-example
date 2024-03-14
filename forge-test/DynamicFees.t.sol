@@ -2,20 +2,19 @@
 pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
-import {IHooks} from "v4-core/interfaces/IHooks.sol";
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {TickMath} from "v4-core/libraries/TickMath.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
-import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
-import {Constants} from "v4-core/../test/utils/Constants.sol";
-import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {SwapFeeLibrary} from "v4-core/libraries/SwapFeeLibrary.sol";
-import {Deployers} from "v4-core/../test/utils/Deployers.sol";
+import {IHooks} from "v4-core/src/interfaces/IHooks.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
+import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
+import {SwapFeeLibrary} from "v4-core/src/libraries/SwapFeeLibrary.sol";
+import {Deployers} from "v4-core/test/utils/Deployers.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
-import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
+import {PoolSwapTest} from "v4-core/src/test/PoolSwapTest.sol";
 import {FixedPointMathLib} from "solmate/utils/FixedPointMathLib.sol";
 
 import {ManualDynamicFee} from "@v4-by-example/pages/fees/dynamic-fee/ManualDynamicFee.sol";
@@ -51,11 +50,11 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
 
         // Create the pools
         autoDynamicFeePoolKey = PoolKey(currency0, currency1, SwapFeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(autoDynamicFee));
-        manager.initialize(autoDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(autoDynamicFeePoolKey, SQRT_RATIO_1_1, ZERO_BYTES);
 
         manualDynamicFeePoolKey =
             PoolKey(currency0, currency1, SwapFeeLibrary.DYNAMIC_FEE_FLAG, 60, IHooks(manualDynamicFee));
-        manager.initialize(manualDynamicFeePoolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(manualDynamicFeePoolKey, SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
         modifyLiquidityRouter.modifyLiquidity(
@@ -75,7 +74,7 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(autoDynamicFeePoolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(autoDynamicFeePoolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         // fee on output token, so expect ~0.95e18 output
@@ -93,7 +92,7 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(autoDynamicFeePoolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(autoDynamicFeePoolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         assertLt(uint256(-int256(swapDelta.amount1())), 0.9995e18);
@@ -107,7 +106,7 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         // fee on output token, so expect ~0.95e18 output
@@ -128,7 +127,7 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         assertLt(uint256(-int256(swapDelta.amount1())), 0.9995e18);
@@ -145,7 +144,7 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
         // Perform a test swap //
         int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(manualDynamicFeePoolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         // fee on output token, so expect ~0.95e18 output
@@ -176,8 +175,8 @@ contract DynamicFeesTest is Test, Deployers, GasSnapshot {
 
     function test_snapshot_manualFee() public {
         skip(100_000);
-        // poke the pool manager
-        manager.updateDynamicSwapFee(manualDynamicFeePoolKey);
+        // update the fee
+        manualDynamicFee.setFee(manualDynamicFeePoolKey);
 
         int256 amount = 1e18;
         bool zeroForOne = true;

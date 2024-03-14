@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
-import {TickMath} from "v4-core/libraries/TickMath.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolSwapTest} from "v4-core/src/test/PoolSwapTest.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
 
 contract Swap {
     // set the router address

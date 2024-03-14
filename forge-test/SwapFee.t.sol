@@ -2,19 +2,18 @@
 pragma solidity ^0.8.19;
 
 import "forge-std/Test.sol";
-import {IHooks} from "v4-core/interfaces/IHooks.sol";
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {TickMath} from "v4-core/libraries/TickMath.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
-import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
-import {Constants} from "v4-core/../test/utils/Constants.sol";
-import {CurrencyLibrary, Currency} from "v4-core/types/Currency.sol";
-import {Deployers} from "v4-core/../test/utils/Deployers.sol";
+import {IHooks} from "v4-core/src/interfaces/IHooks.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {TickMath} from "v4-core/src/libraries/TickMath.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
+import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
+import {Deployers} from "v4-core/test/utils/Deployers.sol";
 import {HookMiner} from "./utils/HookMiner.sol";
 import {GasSnapshot} from "forge-gas-snapshot/GasSnapshot.sol";
-import {PoolSwapTest} from "v4-core/test/PoolSwapTest.sol";
+import {PoolSwapTest} from "v4-core/src/test/PoolSwapTest.sol";
 
 contract SwapFeeTest is Test, Deployers, GasSnapshot {
     using PoolIdLibrary for PoolKey;
@@ -31,7 +30,7 @@ contract SwapFeeTest is Test, Deployers, GasSnapshot {
         // Create the pool
         poolKey = PoolKey(currency0, currency1, 3000, 60, IHooks(address(0x0)));
         poolId = poolKey.toId();
-        manager.initialize(poolKey, Constants.SQRT_RATIO_1_1, ZERO_BYTES);
+        manager.initialize(poolKey, SQRT_RATIO_1_1, ZERO_BYTES);
 
         // Provide liquidity to the pool
         modifyLiquidityRouter.modifyLiquidity(
@@ -52,9 +51,9 @@ contract SwapFeeTest is Test, Deployers, GasSnapshot {
         uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
-        int256 amount = 1e18;
+        int256 amount = -1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         uint256 balance0After = currency0.balanceOfSelf();
@@ -69,9 +68,9 @@ contract SwapFeeTest is Test, Deployers, GasSnapshot {
         uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
-        int256 amount = -1e18;
+        int256 amount = 1e18;
         bool zeroForOne = true;
-        BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         uint256 balance0After = currency0.balanceOfSelf();
@@ -86,9 +85,9 @@ contract SwapFeeTest is Test, Deployers, GasSnapshot {
         uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
-        int256 amount = 1e18;
+        int256 amount = -1e18;
         bool zeroForOne = false;
-        BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         uint256 balance0After = currency0.balanceOfSelf();
@@ -104,9 +103,9 @@ contract SwapFeeTest is Test, Deployers, GasSnapshot {
         uint256 balance1Before = currency1.balanceOfSelf();
 
         // Perform a test swap //
-        int256 amount = -1e18;
+        int256 amount = 1e18;
         bool zeroForOne = false;
-        BalanceDelta swapDelta = swap(poolKey, amount, zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, amount, ZERO_BYTES);
         // ------------------- //
 
         uint256 balance0After = currency0.balanceOfSelf();
