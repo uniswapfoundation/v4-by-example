@@ -9,4 +9,4 @@ PoolKey memory pool = PoolKey({
     tickSpacing: tickSpacing,
     hooks: IHooks(address(0x0))
 });
-initializeRouter.initialize(pool, ...);
+manager.initialize(pool, ...);

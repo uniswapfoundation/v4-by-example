@@ -1,4 +1,4 @@
-PoolInitializeTest initializeRouter = PoolInitializeTest(0x01);
+IPoolManager manager = IPoolManager(0x01);
 
 address hook = address(0x80); // prefix indicates the hook only has a beforeInitialize() function
 address token0 = address(0x11);
@@ -19,4 +19,4 @@ PoolKey memory pool = PoolKey({
     tickSpacing: tickSpacing,
     hooks: IHooks(hook)
 });
-initializeRouter.initialize(pool, startingPrice, hookData);
+manager.initialize(pool, startingPrice, hookData);
