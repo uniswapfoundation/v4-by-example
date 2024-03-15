@@ -18,7 +18,7 @@ Callers (EOAs / contracts / multisigs) of periphery contracts (`PoolSwapTest`) c
 
 - Tradeoff: Routing, quoters, and user interfaces will need to be aware of this non-standard parameter. `hookData` breaks generic/conventional paths
 
-    - Additionally, it's possible to spoof the "`msg.sender` by manually providing an arbitrary address
+    - Additionally, it's possible to spoof the `msg.sender` by manually providing an arbitrary address
 
 ---
 

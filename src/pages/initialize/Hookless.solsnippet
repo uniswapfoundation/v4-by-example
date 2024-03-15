@@ -1,4 +1,4 @@
-PoolInitializeTest initializeRouter = PoolInitializeTest(0x01);
+IPoolManager manager = IPoolManager(0x01);
 
 address token0 = address(0x11);
 address token1 = address(0x22);
@@ -18,4 +18,4 @@ PoolKey memory pool = PoolKey({
     tickSpacing: tickSpacing,
     hooks: IHooks(address(0x0)) // !!! Hookless pool is address(0x0)
 });
-initializeRouter.initialize(pool, startingPrice, hookData);
+manager.initialize(pool, startingPrice, hookData);
