@@ -7,11 +7,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.19;
 
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {IHooks} from "v4-core/interfaces/IHooks.sol";
-import {BalanceDelta} from "v4-core/types/BalanceDelta.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {IHooks} from "v4-core/src/interfaces/IHooks.sol";
+import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 
 abstract contract BaseHook is IHooks {
     error NotPoolManager();

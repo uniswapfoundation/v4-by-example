@@ -14,7 +14,7 @@ export const keywords = [
 export const codes = [
     {
         fileName: "SetSwapFee.sol",
-        code: "dWludDI0IHN3YXBGZWUgPSA1MDA7IC8vIDAuMDUlIHN3YXAgZmVlLCAzMDAwID0gMC4zMCUKCi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIC8vCgpQb29sS2V5IG1lbW9yeSBwb29sID0gUG9vbEtleSh7CiAgICBjdXJyZW5jeTA6IEN1cnJlbmN5LndyYXAodG9rZW4wKSwKICAgIGN1cnJlbmN5MTogQ3VycmVuY3kud3JhcCh0b2tlbjEpLAogICAgZmVlOiBzd2FwRmVlLCAgICAgICAgICAgICAgICAgICAgIC8vIDwtLSBTZXR0aW5nIHRoZSBTd2FwIEZlZSAtLSAvLwogICAgdGlja1NwYWNpbmc6IHRpY2tTcGFjaW5nLAogICAgaG9va3M6IElIb29rcyhhZGRyZXNzKDB4MCkpCn0pOwppbml0aWFsaXplUm91dGVyLmluaXRpYWxpemUocG9vbCwgLi4uKTsK",
+        code: "dWludDI0IHN3YXBGZWUgPSA1MDA7IC8vIDAuMDUlIHN3YXAgZmVlLCAzMDAwID0gMC4zMCUKCi8vIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIC8vCgpQb29sS2V5IG1lbW9yeSBwb29sID0gUG9vbEtleSh7CiAgICBjdXJyZW5jeTA6IEN1cnJlbmN5LndyYXAodG9rZW4wKSwKICAgIGN1cnJlbmN5MTogQ3VycmVuY3kud3JhcCh0b2tlbjEpLAogICAgZmVlOiBzd2FwRmVlLCAgICAgICAgICAgICAgICAgICAgIC8vIDwtLSBTZXR0aW5nIHRoZSBTd2FwIEZlZSAtLSAvLwogICAgdGlja1NwYWNpbmc6IHRpY2tTcGFjaW5nLAogICAgaG9va3M6IElIb29rcyhhZGRyZXNzKDB4MCkpCn0pOwptYW5hZ2VyLmluaXRpYWxpemUocG9vbCwgLi4uKTsK",
     },
 ]
 
@@ -54,7 +54,7 @@ PoolKey <span class="hljs-keyword">memory</span> pool <span class="hljs-operator
     tickSpacing: tickSpacing,
     hooks: IHooks(<span class="hljs-keyword">address</span>(<span class="hljs-number">0x0</span>))
 });
-initializeRouter.initialize(pool, ...);
+manager.initialize(pool, ...);
 </code></pre>`
 
 export default html

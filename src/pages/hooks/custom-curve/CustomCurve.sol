@@ -4,11 +4,11 @@ pragma solidity ^0.8.20;
 // TODO: replace with v4-periphery/BaseHook.sol when compatibility is fixed
 import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {PoolId, PoolIdLibrary} from "v4-core/types/PoolId.sol";
-import {Currency, CurrencyLibrary} from "v4-core/types/Currency.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
+import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
+import {Currency, CurrencyLibrary} from "v4-core/src/types/Currency.sol";
 
 import {IERC20} from "forge-std/interfaces/IERC20.sol";
 
@@ -29,9 +29,7 @@ contract CustomCurve is BaseHook {
             beforeSwap: true, // -- No-op'ing the swap --  //
             afterSwap: false,
             beforeDonate: false,
-            afterDonate: false,
-            noOp: true, // -- ENABLE NO-OP --  //
-            accessLock: true // -- ENABLE CUSTOM CURVES -- //
+            afterDonate: false
         });
     }
 
@@ -89,7 +87,7 @@ contract CustomCurve is BaseHook {
         poolManager.settle(outbound);
 
         // prevent normal v4 swap logic from executing
-        return Hooks.NO_OP_SELECTOR;
+        return BaseHook.beforeSwap.selector;
     }
 
     /// @notice No liquidity will be managed by v4 PoolManager

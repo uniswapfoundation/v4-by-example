@@ -1,16 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-// TODO: update to v4-periphery/BaseHook.sol when its compatible
 import {BaseHook} from "@v4-by-example/utils/BaseHook.sol";
 
-import {Hooks} from "v4-core/libraries/Hooks.sol";
-import {IPoolManager} from "v4-core/interfaces/IPoolManager.sol";
-import {PoolKey} from "v4-core/types/PoolKey.sol";
-import {IDynamicFeeManager} from "v4-core/interfaces/IDynamicFeeManager.sol";
+import {Hooks} from "v4-core/src/libraries/Hooks.sol";
+import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
+import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 
 /// @notice A time-decaying dynamically fee, updated automatically with beforeSwap()
-contract AutoDynamicFee is BaseHook, IDynamicFeeManager {
+contract AutoDynamicFee is BaseHook {
     uint256 public immutable startTimestamp;
 
     // Start at 5% fee, decaying at rate of 0.00001% per second
@@ -25,19 +23,23 @@ contract AutoDynamicFee is BaseHook, IDynamicFeeManager {
         startTimestamp = block.timestamp;
     }
 
-    /// @inheritdoc IDynamicFeeManager
-    function getFee(address, PoolKey calldata) external view override returns (uint24 _currentFee) {
+    /// @dev Deteremines a Pool's swap fee
+    function setFee(PoolKey calldata key) public {
+        // Linearly decaying fee, y = mx + b
+        // After 495,000 seconds (5.72 days), fee will be a minimum of 0.05%
+        uint24 _currentFee;
         unchecked {
             uint256 timeElapsed = block.timestamp - startTimestamp;
             _currentFee = timeElapsed > 495000 ? uint24(MIN_FEE) : uint24((START_FEE - (timeElapsed * decayRate)) / 10);
         }
+        poolManager.updateDynamicSwapFee(key, _currentFee);
     }
 
     /// @dev this example hook contract does not implement any hooks
     function getHookPermissions() public pure override returns (Hooks.Permissions memory) {
         return Hooks.Permissions({
             beforeInitialize: false,
-            afterInitialize: false,
+            afterInitialize: true,
             beforeAddLiquidity: false,
             afterAddLiquidity: false,
             beforeRemoveLiquidity: false,
@@ -45,9 +47,7 @@ contract AutoDynamicFee is BaseHook, IDynamicFeeManager {
             beforeSwap: true,
             afterSwap: false,
             beforeDonate: false,
-            afterDonate: false,
-            noOp: false,
-            accessLock: false
+            afterDonate: false
         });
     }
 
@@ -56,8 +56,18 @@ contract AutoDynamicFee is BaseHook, IDynamicFeeManager {
         override
         returns (bytes4)
     {
-        // poke the poolmanager to update the fee for every swap
-        poolManager.updateDynamicSwapFee(key);
+        // update the fee on every swap
+        // optimization: only call for top-of-block swap
+        setFee(key);
         return BaseHook.beforeSwap.selector;
+    }
+
+    function afterInitialize(address, PoolKey calldata key, uint160, int24, bytes calldata)
+        external
+        override
+        returns (bytes4)
+    {
+        setFee(key);
+        return BaseHook.afterInitialize.selector;
     }
 }

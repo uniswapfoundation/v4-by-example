@@ -5,37 +5,14 @@ description: Charge a static hook fee
 keywords: [hook, hooks, fee, static fee, hook fee]
 ---
 
-- Charge a static hook fee
+# UNDER CONSTRUCTION
 
-Optional hook fees are taken (from swappers) via the Access Lock. Hook fees can be dynamically calculated, or simply set to a fixed amount.
+# PROCEED IF YOU ARE BRAVE
 
-This example showcases a static fee amount
+## requires using a [bleeding edge PR](https://github.com/Uniswap/v4-core/pull/482)
 
----
-## Example Static Hook Fee
 
-`FIXED_HOOK_FEE = 0.0001e18`
+Hook Fees
+- Charge a hook fee
 
-The hook fee is on the *input* token. If `swapAmount = 1e18`, the swapper pays `1.0001e18`
-
-```solidity
-{{{FixedHookFee}}}
-```
-
-Collecting the fee, to recipient `alice`
-```solidity
-hook.collectFee(address(alice), Currency.wrap(address(TOKEN)));
-```
-
-#### Enabling Access Lock
-
-To allow a hook to call `poolManager.mint` (fee taking), without a lock, you need to enable the `ACCESS_LOCK` permission
-
-```solidity
-{{{EnableAccessLock}}}
-```
-
-Example permissions during hook deployment:
-```solidity
-{{{SetAccessLockPermission}}}
-```
+Optional hook fees are taken (from swappers) via the hook. Hook fees can be dynamically calculated, or simply set to a fixed amount.
