@@ -9,9 +9,9 @@ import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
 import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 import {BalanceDelta} from "v4-core/src/types/BalanceDelta.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
-import {Constants} from "v4-core/src/../test/utils/Constants.sol";
+import {Constants} from "v4-core/test/utils/Constants.sol";
 import {CurrencyLibrary, Currency} from "v4-core/src/types/Currency.sol";
-import {Deployers} from "v4-core/src/../test/utils/Deployers.sol";
+import {Deployers} from "v4-core/test/utils/Deployers.sol";
 import {IQuoter} from "v4-periphery/interfaces/IQuoter.sol";
 import {Quoter} from "v4-periphery/lens/Quoter.sol";
 
@@ -58,7 +58,7 @@ contract QuoterTest is Test, Deployers {
         console2.log("Quoted output amount: ", int256(outputAmount));
 
         // Perform a test swap
-        BalanceDelta swapDelta = swap(poolKey, int256(uint256(amountIn)), zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, int256(uint256(amountIn)), ZERO_BYTES);
 
         // quote agrees with the actual swap
         assertEq(outputAmount, swapDelta.amount1());
@@ -80,9 +80,9 @@ contract QuoterTest is Test, Deployers {
         console2.log("Quoted input amount: ", int256(inputAmount));
 
         // Perform a exact-output swap
-        BalanceDelta swapDelta = swap(poolKey, -int256(uint256(amountOut)), zeroForOne, ZERO_BYTES);
+        BalanceDelta swapDelta = swap(poolKey, zeroForOne, -int256(uint256(amountOut)), ZERO_BYTES);
         assertEq(inputAmount, swapDelta.amount0());
-        (uint160 sqrtPriceX96,,) = manager.getSlot0(poolId);
+        (uint160 sqrtPriceX96,,,) = manager.getSlot0(poolId);
         assertEq(sqrtPriceX96After, sqrtPriceX96);
     }
 }
